@@ -1,0 +1,114 @@
+ * {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; 
+  box-sizing: border-box;
+}
+
+body {
+  --N: 8;
+  --bg-color: white;
+  --txt-color: black;
+  --game-size: 800px;
+  --square-size: calc(800px / var(--N));
+  --hint-size: calc(144px / var(--N));
+  --guess-size: calc(540px / var(--N));
+  --partition-size: calc(27px / var(--N));
+}
+
+#wrapper {
+  margin: auto;
+  width: var(--game-size);
+  text-align: center;
+}
+
+#puzzle p {
+  margin: 0;
+}
+
+/* grid */
+.square-row {
+  height: var(--square-size);
+  width: 100%;
+}
+
+.square-row > td {
+  position: relative;
+  width:  var(--square-size);
+}
+
+.square-row > td > div { 
+  height: 100%;
+  width: 100%;
+  top: 0;
+  position: absolute;
+}
+
+table {
+  height: 100%;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hint {
+  text-align: left;
+  vertical-align: top;
+  padding-left: calc(2 * var(--partition-size));
+  padding-top: 4px;
+  font-weight: bold;
+  font-size: var(--hint-size);
+  color: white;
+}
+
+.highlight {
+  background-color: white;
+  color: red;
+}
+
+.answered.candidates,
+.candidates {
+  color: transparent;
+  width: 25%;
+}
+
+.candidate-row {
+  height: 25%;
+  border: 0;
+}
+
+.square.right-border {
+  border-right: var(--partition-size) solid white;
+}
+
+.square.bottom-border {
+  border-bottom: var(--partition-size) solid white;
+}
+
+.square.active {
+  opacity: .7;
+}
+
+.answer {
+  font-size: var(--guess-size);
+  font-weight: bold;
+  width: var(--square-size);
+  color: white;
+}
+
+.selected-candidate {
+  color: white;
+}
+
+
+.bg1 { background-color: brown; }
+.bg2 { background-color: darkolivegreen; }
+.bg3 { background-color: purple; }
+.bg4 { background-color: #003366; }
+.bg5 { background-color: darkslateblue; }
+
+.btn { 
+  background-color: #72bcd4; 
+  color: white;
+  border-radius: 0;
+}
+.btn-selected { background-color: #003366; }
