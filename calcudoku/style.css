@@ -60,8 +60,11 @@ table {
   color: white;
 }
 
-.highlight {
-  background-color: white;
+.square.highlight.answered {
+  background-color: pink;
+}
+
+.square.highlight .answer {
   color: red;
 }
 
@@ -100,6 +103,7 @@ table {
 }
 
 
+.bg0 { background-color: black; }
 .bg1 { background-color: brown; }
 .bg2 { background-color: darkolivegreen; }
 .bg3 { background-color: purple; }
