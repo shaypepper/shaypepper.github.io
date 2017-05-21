@@ -1,0 +1,50 @@
+/* COLOR */
+
+.warm-and-bold {
+    --color1: black;
+    --color2: #062F4F;
+    --color3: #813772;
+    --color4: #B82601;
+}
+
+.cool-vs-warm {
+    --color1: #18121E;
+    --color2: #233237;
+    --color3: #984B43;
+    --color4: #EAC67A;
+}
+
+.punchy {
+    --color1: #E24E42;
+    --color2: #E9B000;
+    --color3: #EB6E80;
+    --color4: #008F95;
+}
+
+.stormy {
+    --color1: #494E6B;
+    --color2: #98878F;
+    --color3: #985E6D;
+    --color4: #192231;
+}
+
+.tropical {
+    --color1: #1FB58F;
+    --color2: #EAB126;
+    --color3: #F24C4E;
+    --color4: #1B7B34;
+}
+
+.antique {
+    --color1: #155765;
+    --color2: #57652A;
+    --color3: #AB9353;
+    --color4: #4D2C3D;
+}
+
+.bold-feature {
+    --color1: #E14658;
+    --color2: #22252C;
+    --color3: #3F3250;
+    --color4: #C0B3A0;
+}

@@ -1,118 +1,85 @@
- * {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif; 
-  box-sizing: border-box;
+@media (max-width: 1040px) {
+  body {
+    --game-size: 630px;
+  }
 }
 
-body {
-  --N: 8;
-  --bg-color: white;
-  --txt-color: black;
-  --game-size: 800px;
-  --square-size: calc(800px / var(--N));
-  --hint-size: calc(144px / var(--N));
-  --guess-size: calc(540px / var(--N));
-  --partition-size: calc(27px / var(--N));
+@media (min-width: 1040px) {
+  body {
+    --game-size: 945px;
+  }
 }
 
 #wrapper {
+  --N: 8;
+  --square-size: calc(var(--game-size) / var(--N));
+  --hint-size: calc(var(--game-size) / (5.5*var(--N)));
+  --candidate-size: calc(var(--game-size) / (7.4*var(--N)));
+  --guess-size: calc(var(--game-size) / (1.5*var(--N)));
+  --partition-size: calc(var(--game-size) / (30*var(--N)));
+  --color1: #E24E42;
+  --color2: #E9B000;
+  --color3: #EB6E80;
+  --color4: #008F95;
+  color: white;
+}
+#wrapper {
   margin: auto;
   width: var(--game-size);
+  height: var(--game-size);
   text-align: center;
 }
-
-#puzzle p {
-  margin: 0;
+table {
+  height: 100%;
+  width: 100% ;
 }
 
-/* grid */
-.square-row {
-  height: var(--square-size);
-  width: 100%;
+#puzzle {
+  height: var(--game-size);
+  width: var(--game-size);
 }
-
-.square-row > td {
-  position: relative;
-  width:  var(--square-size);
-}
-
+#puzzle p { margin: 0; }
+.square-row { height: var(--square-size); }
+.square-row > td { position: relative; }
 .square-row > td > div { 
   height: 100%;
   width: 100%;
   top: 0;
   position: absolute;
 }
-
-table {
-  height: 100%;
-  width: 100%;
-  border-collapse: collapse;
+.square2 {
+  height: var(--square-size);
+  width: var(--square-size);
+  float: left;
 }
-
 .hint {
   text-align: left;
   vertical-align: top;
   padding-left: calc(2 * var(--partition-size));
-  padding-top: 4px;
+  padding-top: var(--partition-size);
   font-weight: bold;
   font-size: var(--hint-size);
-  color: white;
 }
-
-.square.highlight.answered {
-  background-color: pink;
-}
-
-.square.highlight .answer {
-  color: red;
-}
-
-.answered.candidates,
+.square.highlight.answered { background-color: black; }
+.square.highlight .answer { color: var(--color3); }
+.answered .candidates,
 .candidates {
   color: transparent;
   width: 25%;
+  font-size: var(--candidate-size);
 }
-
-.candidate-row {
-  height: 25%;
-  border: 0;
-}
-
-.square.right-border {
-  border-right: var(--partition-size) solid white;
-}
-
-.square.bottom-border {
-  border-bottom: var(--partition-size) solid white;
-}
-
-.square.active {
-  opacity: .7;
-}
-
+.selected-candidate { color: white; }
+.candidate-row { height: 25%; }
+.square.right-border { border-right: var(--partition-size) solid white; }
+.square.bottom-border { border-bottom: var(--partition-size) solid white; }
+.square.active { opacity: .7; }
 .answer {
   font-size: var(--guess-size);
   font-weight: bold;
   width: var(--square-size);
-  color: white;
 }
-
-.selected-candidate {
-  color: white;
-}
-
-
-.bg0 { background-color: black; }
-.bg1 { background-color: brown; }
-.bg2 { background-color: darkolivegreen; }
-.bg3 { background-color: purple; }
-.bg4 { background-color: #003366; }
-.bg5 { background-color: darkslateblue; }
-
-.btn { 
-  background-color: #72bcd4; 
-  color: white;
-  border-radius: 0;
-}
-.btn-selected { background-color: #003366; }
+.bg1 { background-color: var(--color1) }
+.bg2, .btn { background-color: var(--color2) }
+.bg3 { background-color: var(--color3) }
+.bg4, .btn-selected { background-color: var(--color4) }
+.btn {  border-radius: 0; }
