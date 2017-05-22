@@ -1,4 +1,4 @@
-@media (max-width: 1040px) {
+/*@media (max-width: 1040px) {
   body {
     --game-size: 630px;
   }
@@ -8,10 +8,19 @@
   body {
     --game-size: 945px;
   }
+}*/
+
+@keyframes glitz {
+    0%   {background-color: var(--color1);}
+    25%  {background-color: var(--color2);}
+    50%  {background-color: var(--color3);}
+    75%  {background-color: var(--color4);}
+    100% {background-color: var(--color1);}
 }
 
-#wrapper {
+body {
   --N: 8;
+  --game-size: 630px;
   --square-size: calc(var(--game-size) / var(--N));
   --hint-size: calc(var(--game-size) / (5.5*var(--N)));
   --candidate-size: calc(var(--game-size) / (7.4*var(--N)));
@@ -26,31 +35,27 @@
 #wrapper {
   margin: auto;
   width: var(--game-size);
-  height: var(--game-size);
-  text-align: center;
+  text-align: ;
 }
 table {
   height: 100%;
   width: 100% ;
 }
-
-#puzzle {
-  height: var(--game-size);
-  width: var(--game-size);
+#puzzle p { margin: 0; position: absolute;}
+.square-row { 
+  height: var(--square-size); 
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
 }
-#puzzle p { margin: 0; }
-.square-row { height: var(--square-size); }
-.square-row > td { position: relative; }
-.square-row > td > div { 
-  height: 100%;
-  width: 100%;
-  top: 0;
-  position: absolute;
+[role="tooltip"] {
+  color: black;
 }
-.square2 {
+.square {
   height: var(--square-size);
   width: var(--square-size);
-  float: left;
+  display: inline-block;
+  box-sizing: border-box;
 }
 .hint {
   text-align: left;
@@ -72,14 +77,32 @@ table {
 .candidate-row { height: 25%; }
 .square.right-border { border-right: var(--partition-size) solid white; }
 .square.bottom-border { border-bottom: var(--partition-size) solid white; }
-.square.active { opacity: .7; }
+.square.active { opacity: .7;}
 .answer {
   font-size: var(--guess-size);
   font-weight: bold;
   width: var(--square-size);
+}
+.btn-group {
+  height: 4em;
 }
 .bg1 { background-color: var(--color1) }
 .bg2, .btn { background-color: var(--color2) }
 .bg3 { background-color: var(--color3) }
 .bg4, .btn-selected { background-color: var(--color4) }
 .btn {  border-radius: 0; }
+
+.win .bg1 {
+  animation: glitz 1170ms linear 0s infinite;
+}
+.win .bg2 {
+  animation: glitz 2080ms linear 0s infinite;
+}
+.win .bg3 {
+  animation: glitz 2500ms linear 0s infinite;
+}
+.win .bg4 {
+  animation: glitz 3130ms linear 0s infinite;
+}
+
+

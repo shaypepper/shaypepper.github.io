@@ -1,4 +1,4 @@
-var activeSquare, puzzle, groups=[], N=8, candidateMode;
+var activeSquare, puzzle=[], groups=[], N=8, candidateMode;
 var random = (arr) => arr[Math.floor(Math.random()*arr.length)];
 
 class Square{
@@ -20,8 +20,13 @@ class Square{
     move(x){
         this.friends[x].squareDom.trigger("click");
     }
-    get check(){ 
-        return this.guess == this.digit; 
+    get check(){
+        return (this.guess == this.digit); 
+    }
+    checkSquare(){
+        if (!this.check) {
+            this.squareDom.addClass("highlight");
+        }
     }
     get squareDom() {
         return $("#s"+ this.id);
@@ -37,8 +42,7 @@ class Square{
         let classes = "square bg"+this.group.color;
         if (this.friends[3].group != this.group) classes += " bottom-border";
         if (this.friends[2].group != this.group) classes += " right-border";
-
-        let dom = $('<td>', { id:'s'+this.id, class: classes });
+        let dom = $('<div>', { id:'s'+this.id, class: classes });
         let answer = $('<p>', { id:'a'+this.id, class: 'answer' });
         let div = $('<div><table><tr></tr></table></div>');
         let hint = $('<td>', { class:'hint', colspan: 3}).text(self.hint);
@@ -63,10 +67,14 @@ class Square{
         dom.click(() => { self.active = true; });
         return dom;
     }
+    reveal(){
+        this.answer = this.digit;
+    }
     set answer(x){
         this.guess = x;
         this.answerDom.text(x);
         this.squareDom[(x?"add":"remove")+"Class"]("answered");
+        this.squareDom.removeClass("highlight");
         endOfTurnCheck();
     }
     set candidate(x){
@@ -156,11 +164,17 @@ class Group{
 
 function endOfTurnCheck(){
     if(puzzle.every(row => row.every((sq) => sq.check))) {
-
+        $("#puzzle").addClass("win");
     }
 }
 
 function generatePuzzle(){
+    if ($(this).attr("data-n")) {
+        N = $(this).attr("data-n");
+        $(".size-btn").removeClass("btn-selected");
+        $(this).addClass("btn-selected").blur();
+    }
+    $("#puzzle").removeClass("win");
     puzzle = [];
     groups = [];
     for (let i=0; i<N; i++){
@@ -185,21 +199,16 @@ function generatePuzzle(){
     groups.forEach(g => g.findNeighbors());
     var stack = [ puzzle[Math.floor(N/2)][Math.floor(N/2)].group ];
     while (current = stack.shift()) current.setColor(stack);
+    drawPuzzle();
     return puzzle;
 }
 
 function drawPuzzle(){
-    N = $(this).attr("data-n") || N;
-    $(".size-btn").removeClass("btn-selected");
-    $(this).addClass("btn-selected").blur();
-
-    puzzle = generatePuzzle();
-
     document.body.style.setProperty('--N', N);
     $("#puzzle").empty();
 
     for (r=0; r<N; r++){
-        let row = $('<tr>', { id: 'r'+r, class:"square-row" });
+        let row = $('<div>', { id: 'r'+r, class:"row square-row" });
         $("#puzzle").append(row);
         for (s=0; s<N; s++){
           let square = puzzle[r][s].createDom();
@@ -211,13 +220,35 @@ function drawPuzzle(){
 };
 
 $(function(){
-    $(".size-btn").click(drawPuzzle);
-    $("[data-n=7]").click();
-    $(".mode-btn").click(function (spacebar){
+    $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' });
+    $(".size-btn").click(generatePuzzle);
+    
+    $(".mode-btn").click(function(){
         candidateMode = $(this).attr("data-mode") == "candidate";
         $(".mode-btn").removeClass("btn-selected");
         $(this).addClass("btn-selected");
     });
-
+    $("#reveal-btn").click(function(){
+        activeSquare.reveal();
+        $(this).blur();
+    });
+    $("#check-btn").click(function(){
+        activeSquare.checkSquare();
+        $(this).blur();
+    });
+    $("#reset-btn").click(function(){
+        $(this).blur();
+        $("#puzzle").removeClass("win");
+        puzzle.forEach((row,i) => 
+            row.forEach((sq,j) => {
+                sq.answer = '';
+            })
+        );
+    });
+    $("#new-puzzle-btn").click(function(){
+        $(this).blur();
+        $(".size-btn.btn-selected").click();
+    });
+    $("[data-n=4]").click();
     $(document).keyup((x) => { activeSquare.keyStroke(x) });
 });

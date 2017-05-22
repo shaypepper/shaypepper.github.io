@@ -7,14 +7,11 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script type="text/javascript" src=index.js></script>
 </head>
 <body>
-<div class="row">
-    
-</div>
-<p>
-    Size:
+<div id="wrapper">
     <div class="btn-group">
         <button class="size-btn btn" data-n="4">4x4</button>
         <button class="size-btn btn" data-n="5">5x5</button>
@@ -23,16 +20,19 @@
         <button class="size-btn btn btn-selected" data-n="8">8x8</button>
         <button class="size-btn btn" data-n="9">9x9</button>
     </div>
-</p>
-<p>
-    Candidate Mode:
     <div class="btn-group">
         <button class="mode-btn btn btn-selected" data-mode="guess"><span class="glyphicon glyphicon-pencil"/></button>
         <button class="mode-btn btn" data-mode="candidate"><span class="glyphicon glyphicon-th"/></button>
     </div>
-</p>
-<div id="wrapper">
-    <table id="puzzle" class="grid"/>
+    <div>
+        <button id="check-btn" class="btn" data-trigger="hover" data-toggle="tooltip" data-placement="top" title="Check square."><span class="glyphicon glyphicon-ok" /></button>
+        <button id="reveal-btn" class="btn" data-trigger="hover" data-toggle="tooltip"  data-placement="top" title="Reveal square."><span class="
+        glyphicon glyphicon-eye-open"/></button>
+        <button id="reset-btn" class="btn" title="Clear puzzle."  data-trigger="hover" data-placement="top" data-toggle="tooltip"><span
+         class="glyphicon glyphicon-refresh"/></button>
+        <button id="new-puzzle-btn" class="btn" data-placement="top" data-trigger="hover"  data-toggle="tooltip" title="New puzzle."><span class="glyphicon glyphicon-asterisk"/></button>
+    </div>
+    <div id="puzzle"/>
 </div>
 </body>
 </html>
