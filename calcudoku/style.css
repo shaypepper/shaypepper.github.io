@@ -1,12 +1,18 @@
-@media (max-width: 1040px) {
+@media (max-width: 700px) {
   body {
     --game-size: 480px;
   }
 }
 
-@media (min-width: 1040px) {
+@media (max-width: 840px ) and ( min-width: 701px) {
   body {
     --game-size: 630px;
+  }
+}
+
+@media (min-width: 841px) {
+  body {
+    --game-size: 800px;
   }
 }
 
