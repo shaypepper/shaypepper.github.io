@@ -1,14 +1,14 @@
-/*@media (max-width: 1040px) {
+@media (max-width: 1040px) {
   body {
-    --game-size: 630px;
+    --game-size: 480px;
   }
 }
 
 @media (min-width: 1040px) {
   body {
-    --game-size: 945px;
+    --game-size: 630px;
   }
-}*/
+}
 
 @keyframes glitz {
     0%   {background-color: var(--color1);}
@@ -20,7 +20,7 @@
 
 body {
   --N: 8;
-  --game-size: 630px;
+  /*--game-size: 630px;*/
   --square-size: calc(var(--game-size) / var(--N));
   --hint-size: calc(var(--game-size) / (5.5*var(--N)));
   --candidate-size: calc(var(--game-size) / (7.4*var(--N)));
@@ -30,16 +30,18 @@ body {
   --color2: #E9B000;
   --color3: #EB6E80;
   --color4: #008F95;
-  color: white;
 }
 #wrapper {
   margin: auto;
   width: var(--game-size);
-  text-align: ;
+  color: white;
 }
 table {
   height: 100%;
   width: 100% ;
+}
+h1 {
+  color: black;
 }
 #puzzle p { margin: 0; position: absolute;}
 .square-row { 
@@ -83,8 +85,10 @@ table {
   font-weight: bold;
   width: var(--square-size);
 }
-.btn-group {
+.btn-group, .btns {
   height: 4em;
+  display: inline-block;
+  vertical-align: top;
 }
 .bg1 { background-color: var(--color1) }
 .bg2, .btn { background-color: var(--color2) }
