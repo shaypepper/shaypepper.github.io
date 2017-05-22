@@ -170,7 +170,7 @@ function endOfTurnCheck(){
 
 function generatePuzzle(){
     if ($(this).attr("data-n")) {
-        N = $(this).attr("data-n");
+        N = Number($(this).attr("data-n"));
         $(".size-btn").removeClass("btn-selected");
         $(this).addClass("btn-selected").blur();
     }
