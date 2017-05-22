@@ -100,6 +100,9 @@ class Square{
         } else if (X >= 49 && X <= N+48) {
             this.answer = candidateMode ? '' : X-48;
             this.candidate = X-48;
+        } else if (X >= 97 && X <= N+96) {
+            this.answer = candidateMode ? '' : X-96;
+            this.candidate = X-96;
         } else if (X == 32) {
             candidateMode = !candidateMode;
             $(".mode-btn").toggleClass("btn-selected");
