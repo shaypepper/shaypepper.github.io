@@ -1,0 +1,163 @@
+/* ['#FE6F5E','#915C83','#008000','#5D8AA8','#6F4E37', "#cc8a00"] */
+body {
+  --bg-color: white;
+  --theme-color: #915C83;
+  --border-color: #008000;
+  --sec-bg: gainsboro;
+  --c1: #FE6F5E;
+  --c2: #915C83;
+  --c3: #008000;
+  --c4: #5D8AA8;
+  --c5: #6F4E37;
+  --c6: #cc8a00;
+}
+
+section > p {
+  line-height: 1.5;
+  font-size: 1em;
+}
+
+@media only screen and (max-width: 1000px) {
+  .container-fluid .row .col-xs-9.myText {
+    width: 100%;
+  }
+}
+
+.modal.fade table tr + tr > td + td + td {
+  font-family: ;
+}
+
+.btn, .btn-block {
+  background-color: var(--theme-color);
+  border-color: var(--sec-bg);
+  color:  var(--bg-color);
+}
+
+body {
+  line-height: 1.5;
+  font-family: 'Noto Sans', sans-serif;
+  background: var(--bg-color);
+  margin: auto;
+}
+
+.btn, 
+h1, h2, h3, h4, h5, h6, .nav
+{
+  font-family: 'Raleway', sans-serif;  
+}
+
+#Footnotes strong { font-weight: 700; }
+
+section {
+  padding: 2em 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+section:last-child {
+  border-bottom: none;
+}
+
+.codeframe {
+  width: 100%;
+  padding: 10px;
+  height: 100px;
+}
+
+.navbar-link {
+  color: var(--bg-color);
+  vertical-align: middle;
+}
+
+.navbar {
+  background: var(--theme-color);
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  vertical-align: middle;
+  color: var(--bg-color);
+}
+
+.chart {
+  background-color:  var(--sec-bg);
+  border-radius: 1em;
+  padding: 1em;
+  margin: .5em 0;
+}
+
+.chart-title {
+  font-size: 1.5em;
+}
+
+.container-fluid {
+  padding-right: 5%;
+  padding-left: 5%;
+}
+
+/*.myText {
+  margin-top: 50px;
+}*/
+
+a { color: black; }
+
+.nav .active {
+  font-weight: bold;
+  border-left: 4px solid;
+  border-color: #6F4E37;
+}
+
+.nav .nav { display: none; }
+
+.nav .active .nav { display: block; }
+
+.nav .nav a {
+  font-weight: normal;
+  font-size: .85em;
+}
+
+.nav .nav span {
+  margin: 0 5px 0 2px;
+}
+
+.nav .nav .active a,
+.nav .nav .active:hover a,
+.nav .nav .active:focus a {
+  font-weight: bold;
+}
+
+.nav .nav .active span,
+.nav .nav .active:hover span,
+.nav .nav .active:focus span {
+  display: none;
+}
+
+pre,
+pre code { 
+  white-space: pre; 
+  overflow-y: auto;
+  height: 300px;
+  background-color: transparent;
+}
+
+.affix { top: 0 }
+
+select,
+optgroup,
+option {
+  background-color: var(--theme-color);
+  border: 0;
+  color: var(--bg-color);
+  font-size: 1em;
+  font-weight: 500;
+  border-radius: 4px;
+  text-transform: uppercase;
+  vertical-align: bottom;
+  text-align: center;
+}
+
+.fa-arrow-up {
+  color: #5D8AA8;
+}
+
+h1 {
+  padding-top: 50px;
+}
