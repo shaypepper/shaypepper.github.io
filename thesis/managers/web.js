@@ -3,7 +3,7 @@ var s = require('underscore.string');
 var moment = require('moment');
 
 var ew = require('../index.js');
-
+var controller = ew.lib.controller;
 var webController = ew.controllers.web;
 var sections = [
     'introduction',
@@ -19,14 +19,28 @@ module.exports = function(){
     var app = ew.controllers.web;
     app.load();
     var appDom = app.dom;
+
+    var loadCharts = function(){
+
+        console.log('LOADED!');
+    };
+
+
     $.load = function() {
-        console.log(ew.controllers);
         _.each(sections, function(section){
             var c = ew.controllers.sections[s.camelize(section)]();
             c.load();
             appDom.find('#'+section).append(c.dom);
         });
+
+        var p = controller("<p>");
+        console.log(p.dom);
+        ew.lib.makeCharts(app);
+        // google.charts.load('current', {packages: ['corechart']});
+        // google.charts.setOnLoadCallback(loadCharts);
     };
+
+
 
     return $;
 };
