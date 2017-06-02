@@ -49,8 +49,8 @@ table {
 h1 {
   color: black;
 }
-#puzzle p { margin: 0; position: absolute;}
-.square-row { 
+#puzzle p { margin: 0; position: absolute; }
+#puzzle .row { 
   height: var(--square-size); 
   text-align: center;
   box-sizing: border-box;
@@ -81,8 +81,9 @@ h1 {
   width: 25%;
   font-size: var(--candidate-size);
 }
-.selected-candidate { color: white; }
-.candidate-row { height: 25%; }
+.selected.candidates { color: white; }
+.square table tr { height: 25%; }
+.square div, .square table { height: 100%; }
 .square.right-border { border-right: var(--partition-size) solid white; }
 .square.bottom-border { border-bottom: var(--partition-size) solid white; }
 .square.active { opacity: .7;}
@@ -99,7 +100,7 @@ h1 {
 .bg1 { background-color: var(--color1) }
 .bg2, .btn { background-color: var(--color2) }
 .bg3 { background-color: var(--color3) }
-.bg4, .btn-selected { background-color: var(--color4) }
+.bg4, .btn.selected { background-color: var(--color4) }
 .btn {  border-radius: 0; }
 
 .win .bg1 {

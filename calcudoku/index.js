@@ -1,111 +1,85 @@
-var activeSquare, puzzle=[], groups=[], N=8, candidateMode;
-var random = (arr) => arr[Math.floor(Math.random()*arr.length)];
+var activeSquare, puzzle=[], groups=[], squares=[], N=8, candidateMode;
+var random = x => Array.isArray(x) ? x[random(x.length)] : Math.floor(Math.random()*x);
+var max = Math.max, min=Math.min;
 
 class Square{
-    constructor(i,j){
-        this.digit = ((i+j) % N) + 1;
-        this.hint = '';
+    constructor(i,j,o){
+        this.digit = ((i+j+o) % N) + 1;
     }
-    position(i, j){
-        this.i = i;
-        this.j = j;
-        this.friends = [
-            j?      puzzle[i][j-1] : this,  // left
-            i?      puzzle[i-1][j] : this,  // above
-            j<N-1?  puzzle[i][j+1] : this,  // right
-            i<N-1?  puzzle[i+1][j] : this   // down
-        ];
-        this.neighbors = this.friends.filter(x => x!=this);
-    }
-    move(x){
-        this.friends[x].squareDom.trigger("click");
-    }
-    get check(){
-        return (this.guess == this.digit); 
-    }
-    checkSquare(){
-        if (!this.check) {
-            this.squareDom.addClass("highlight");
-        }
-    }
-    get squareDom() {
-        return $("#s"+ this.id);
-    }
-    get answerDom(){
-        return $("#a"+ this.id);
-    }
-    get id(){
-        return ''+this.i+this.j;
-    }
-    createDom(){
-        var self = this;
-        let classes = "square bg"+this.group.color;
-        if (this.friends[3].group != this.group) classes += " bottom-border";
-        if (this.friends[2].group != this.group) classes += " right-border";
-        let dom = $('<div>', { id:'s'+this.id, class: classes });
-        let answer = $('<p>', { id:'a'+this.id, class: 'answer' });
-        let div = $('<div><table><tr></tr></table></div>');
-        let hint = $('<td>', { class:'hint', colspan: 3}).text(self.hint);
-        dom.append(answer);
-        dom.append(div);
+    get check()     { return (this.guess == this.digit); }
+    get active()    { return this.currentActive; }
+    get dom(){
+        if (this.domCreated) return $("#s"+ this.id);
+        var f = this.friends, row,
+            answer = $('<p>', { id:'a'+this.id, class:'answer' }),
+            hint =   $('<td>', { class:'hint', colspan:3 })
+                .text(this.hint || ''),
+            div =    $('<div><table><tr></tr></table></div>'),
+            dom =    $('<div>', { id:'s'+this.id })
+                .append(answer)
+                .append(div)
+                .click(() => this.active = true )
+                .addClass("square bg" + this.group.color + 
+                    (f[3].group != this.group ? " bottom-border" : "") +
+                    (f[2].group != this.group ? " right-border" : ""));
         div.find("tr").append(hint);
-        let candidateRow = $("<tr>", { class: "candidate-row" });
-        for (let n=1; n<=N; n++){
-            if (!((n-1) % 3)) {
-                  candidateRow = $("<tr>", { class: "candidate-row" });
-                  dom.find("table").append(candidateRow);
-            }
-            let candidate = $("<td>", { class: "candidates c"+n }).text(n);
-            candidate.click(function(){
-                if (candidateMode && self.currentActive) {
-                    $(this).toggleClass("selected-candidate");
-                }
-            });
-            candidateRow.append(candidate);  
-        }
 
-        dom.click(() => { self.active = true; });
+        for (let n=0; n<N; n++){
+            n%3 || div.find('table').append($('<tr>'));
+            let c = $('<td>', { class:'candidates c'+(n+1) })
+                .text(n+1)
+                .click(e => this.candidate = n+1);
+            div.find('tr:last-child').append(c);  
+        }
+        this.domCreated = true;
+        this.i + this.j || (this.active = true);
         return dom;
-    }
-    reveal(){
-        this.answer = this.digit;
     }
     set answer(x){
         this.guess = x;
-        this.answerDom.text(x);
-        this.squareDom[(x?"add":"remove")+"Class"]("answered");
-        this.squareDom.removeClass("highlight");
-        endOfTurnCheck();
+        this.dom.find('.answer').text(x);
+        this.dom[(x?"add":"remove")+"Class"]("answered");
+        this.dom.removeClass("highlight");
+        squares.every(sq => sq.check) && $("#puzzle").addClass("win");
     }
     set candidate(x){
-        if (!x) $(".active .candidates").removeClass("selected-candidate"); 
-        if (candidateMode) $(".active .c"+x).toggleClass("selected-candidate");
+        x || this.dom.find('.candidates').removeClass("selected"); 
+        candidateMode && this.active && this.dom.find('.c'+x).toggleClass("selected");
     }
     set active(x){
+        x && activeSquare && (activeSquare.active = false);
+        x && (activeSquare = this);
         this.currentActive = x;
-        if (x) {
-            if (activeSquare) {
-                activeSquare.active = false;
-            }
-            this.squareDom.addClass("active");
-            activeSquare = this;
-        } else {
-            this.squareDom.removeClass("active");
-        } 
+        this.dom[(x?'add':'remove')+'Class']('active');
     }
+    position(i, j){
+        this.i = i, this.j = j, this.id = ''+i+j;
+        this.friends = [
+            puzzle[i][max(j-1,0)],    // left
+            puzzle[max(i-1,0)][j],    // above
+            puzzle[i][min(j+1,N-1)],  // right
+            puzzle[min(i+1,N-1)][j]   // down
+        ];
+        this.neighbors = this.friends.filter(x => x!=this);
+        squares.push(this);
+    }
+    checkSquare(){
+        this.check || this.dom.addClass("highlight");
+    }
+    reveal(){
+        this.answer = this.digit;
+    }   
     keyStroke(x){
-        let X = x.keyCode;
-        if (X >= 37 && X <= 40) {
-            this.move(X-37);
-        } else if (X >= 49 && X <= N+48) {
-            this.answer = candidateMode ? '' : X-48;
-            this.candidate = X-48;
-        } else if (X >= 97 && X <= N+96) {
-            this.answer = candidateMode ? '' : X-96;
-            this.candidate = X-96;
+        let X = x.keyCode, Y;
+        if ((Y=X-37) >= 0 && X <= 40) {
+            this.friends[Y].active = true
+        } else if ((Y=X-48) > 0 && Y <= N || 
+                   (Y=X-96) > 0 && Y <= N) {
+            this.answer = candidateMode ? '' : Y;
+            this.candidate = Y;
         } else if (X == 32) {
             candidateMode = !candidateMode;
-            $(".mode-btn").toggleClass("btn-selected");
+            $(".mode.btn").toggleClass("selected");
         } else if (X == 8) {
             this[this.guess ? "answer" : "candidate"] = '';
         }
@@ -114,144 +88,94 @@ class Square{
 
 class Group{
     constructor(i, current){
-        var self = this;
-        this.i = i;
         this.squares = [];
         this.color = 0;
-        this.neighbors = [];
         
-        var size = Math.random();
-        size = (size < .8) ? 2 : (size < .95 ? 3 : 4);  
-        while (size-- && current) {
-            self.squares.push(current);
-            current.group = self;
+        var counter = (Math.random()<.8) ? 2 : (Math.random()<.75 ? 3 : 4); 
+        while (counter-- && current) {
+            this.squares.push(current);
+            current.group = this;
             current = random(current.neighbors.filter(n => !n.group));
         }
-        var d = this.squares.map(sq => sq.digit);
-        var ops = [ 
-            x => x.reduce((a,b) => a+b) + '+',
-            x => x.reduce((a,b) => a*b) + 'x',
-            x => x.reduce((a,b) => Math.abs(a-b)) + '-',
-            x => x.reduce((a,b) => Math.max(a/b, b/a))+ '\u00F7'
-        ];
-
-        if (d.length == 2 && (d[0] % d[1] && d[0] % d[1])) ops.splice(3,1);
-        if (d.length == 2 && (d[0] == 1 || d[1] == 1)) ops.splice(1,1);
-        if (d.length > 2) ops.splice(2,2)
-        this.squares[0].hint = d.length == 1? d[0] : random(ops)(d);
-    }
-
-    findNeighbors(){
-        var self = this;
-        this.squares.forEach(m => {
-            m.neighbors.forEach(n => {
-                if (n.group != self && !self.neighbors.includes(n.group)) {
-                    self.neighbors.push(n.group);
-                }
-            });
-        });
+        var d = this.squares.map(sq => sq.digit), ops = new Set(['+','x']); 
+        if (d.length == 1) { return this.squares[0].hint = d[0] }
+        if (d.length == 2){
+            ops.add('-');
+            d.includes(1) && ops.delete('x');
+            d[0] % d[1] && d[1] % d[0] || ops.add('\u00F7');
+        }
+        var o = random(Array.from(ops));
+        this.squares[0].hint = d.reduce((x,y) => {
+            let a = max(x,y), b = min(x,y);
+            return { '+':a+b, 'x':a*b, '-':a-b, '\u00F7':a/b }[o];
+        }) + o;
     }
 
     setColor(stack){
-        let colors = [0,1,2,3,4];
-        this.neighbors.forEach(function(neighbor, i){
-            colors[neighbor.color] = 0;
-            if (!neighbor.color) {
-                neighbor.color = 5;
-                stack.push(neighbor);
-            }
-        });
-        this.color = random(colors.filter(x=>x)) || random([1,2,3,4]);
-    }
-}
-
-function endOfTurnCheck(){
-    if(puzzle.every(row => row.every((sq) => sq.check))) {
-        $("#puzzle").addClass("win");
+        var base = [1,2,3,4], c = new Set(base);
+        for (let s of this.squares) for (let n of s.neighbors) {
+            n.group == this || c.delete(n.group.color) || 
+            n.group.color || stack.add(n.group)
+        }
+        this.color = random(c.size ? Array.from(c) : base);
     }
 }
 
 function generatePuzzle(){
-    if ($(this).attr("data-n")) {
-        N = Number($(this).attr("data-n"));
-        $(".size-btn").removeClass("btn-selected");
-        $(this).addClass("btn-selected").blur();
-    }
-    $("#puzzle").removeClass("win");
-    puzzle = [];
-    groups = [];
-    for (let i=0; i<N; i++){
+    puzzle.length = squares.length = groups.length = 0;
+    var g=0, stack, k=Math.floor(N/2)-1; 
+    for (let i=0, o=random(N); i<N; i++){
         puzzle.push([]);
-        for (let j=0; j<N; j++){
-          puzzle[i].push(new Square(i,j));
-        }
+        for (let j=0; j<N; j++) puzzle[i].push(new Square(i,j,o));
     }
 
-    for (let x=0, j=0; x<50; x++, j=Math.floor(Math.random()*N)){
-        if (Math.floor(Math.random() * 2)) {
-            puzzle.push(puzzle.splice(j,1)[0]);
-        } else {
-            puzzle.forEach(row => row.push(row.splice(j,1)[0]));
-        }
+    for (let i=j=k=0; i++<50; j=random(N), k=random(2)){
+        k || puzzle.splice(j, 0, puzzle.pop());
+        k || puzzle.forEach(r => r.splice(j, 0, r.pop()));
     }
-    var g = 0;
-    puzzle.forEach((row,i) => row.forEach((sq,j) => sq.position(i,j)));
-    puzzle.forEach((row,i) => row.forEach((sq,j) => {
-        if (!sq.group) groups.push(new Group(++g, sq));
-    }));
-    groups.forEach(g => g.findNeighbors());
-    var stack = [ puzzle[Math.floor(N/2)][Math.floor(N/2)].group ];
-    while (current = stack.shift()) current.setColor(stack);
+    for (let i=0;i<N;i++) for (let j=0;j<N;j++) puzzle[i][j].position(i,j);
+    squares.forEach(sq => sq.group || groups.push(new Group(++g, sq)));
+    stack = new Set([ puzzle[k][k].group ]);
+    for (let g of stack) g.setColor(stack);
     drawPuzzle();
-    return puzzle;
 }
 
 function drawPuzzle(){
-    document.body.style.setProperty('--N', N);
-    $("#puzzle").empty();
-
-    for (r=0; r<N; r++){
-        let row = $('<div>', { id: 'r'+r, class:"row square-row" });
-        $("#puzzle").append(row);
-        for (s=0; s<N; s++){
-          let square = puzzle[r][s].createDom();
-          row.append(square);
-        }
-    }
-    puzzle.forEach(row => console.log( row.map(a => a.digit+' '+a.group.i)) );
+    $('body').css('--N', ''+N);
+    $("#puzzle").html(puzzle.map(row => 
+        $('<div>', { class:"row" }).append(row.map(sq => sq.dom))
+    ));
     puzzle[0][0].active = true;
 };
 
 $(function(){
-    $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' });
-    $(".size-btn").click(generatePuzzle);
-    
-    $(".mode-btn").click(function(){
-        candidateMode = $(this).attr("data-mode") == "candidate";
-        $(".mode-btn").removeClass("btn-selected");
-        $(this).addClass("btn-selected");
-    });
-    $("#reveal-btn").click(function(){
-        activeSquare.reveal();
-        $(this).blur();
-    });
-    $("#check-btn").click(function(){
-        activeSquare.checkSquare();
-        $(this).blur();
-    });
-    $("#reset-btn").click(function(){
-        $(this).blur();
+    $(".size.btn").click(function(){
+        N = +$(this).attr("data-n");
+        $(".size.btn.selected").toggleClass("selected");
+        $(this).addClass("selected");
         $("#puzzle").removeClass("win");
-        puzzle.forEach((row,i) => 
-            row.forEach((sq,j) => {
-                sq.answer = '';
-            })
-        );
-    });
-    $("#new-puzzle-btn").click(function(){
-        $(this).blur();
-        $(".size-btn.btn-selected").click();
+        generatePuzzle();
     });
     $("[data-n=4]").click();
-    $(document).keyup((x) => { activeSquare.keyStroke(x) });
+
+    $('[data-toggle="tooltip"]').tooltip({ trigger: 'hover' });
+
+    $(".btn").click(function(){ $(this).blur() });
+    
+    $("#reveal").click(() => activeSquare.reveal());
+    $("#check").click(() => activeSquare.checkSquare());
+    $("#new-puzzle").click(() => $(".size.selected").click());
+
+    $("#reset").click(() => {
+        $("#puzzle").removeClass("win");
+        $('.candidates').removeClass('selected');
+        for (sq of squares) sq.answer = '';
+    });
+    $(".mode").click(function(){
+        candidateMode = $(this).attr("data-mode") == "candidate";
+        $(".mode").removeClass("selected");
+        $(this).addClass("selected");
+    });
+    
+    $(document).keyup(x => activeSquare.keyStroke(x));
 });
