@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>game of life</title>
+<!--     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+    <style>
+        .on  { fill: #E9B000; }
+        .off { fill: black; }
+        .btn {
+            border-radius: 0;
+            border: none;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            font-family: sans-serif;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <button class="btn" id="size10">10x10</button>
+    <button class="btn" id="size25">25x25</button>
+    <button class="btn" id="size50">50x50</button>
+    <button class="btn" id="size100">100x100</button>
+    <button id="tick" class="btn">TICK</button>
+    <button id="start" class="btn">START</button>
+    <button id="stop" class="btn">STOP</button>
+    <button id="reset" class="btn">RESET</button>
+    <button id="clear" class="btn">CLEAR</button>
+</div>
+<div id="game"></div>
+<script type="text/javascript" src=https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.1/svg.js></script>
+<script type="text/javascript" src=index.js></script>
+</body>
+</html>
