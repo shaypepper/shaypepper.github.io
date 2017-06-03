@@ -2,14 +2,15 @@ var game = [],
     counts = [],
     neighbors = [],
     squares = [],
-    N = 50, 
+    N = 10, 
     size = 1000, 
     alive = 0, 
     interval=500,
     redraw,
+    mousedown,
+    drag,
     playing = true,
     draw = SVG('game').size(size, size);
-
 newGame();
 
 function generateGame(){
@@ -28,11 +29,11 @@ function generateGame(){
             [i  , j-1],
             [i  , j+1]
         ];
-        let n = new Set(x);
-        i     || (n.delete(x[0]), n.delete(x[1]), n.delete(x[2]));
-        i<N-1 || (n.delete(x[3]), n.delete(x[4]), n.delete(x[5]));
-        j     || (n.delete(x[0]), n.delete(x[3]), n.delete(x[6]));
-        j<N-1 || (n.delete(x[2]), n.delete(x[5]), n.delete(x[7]));
+        let n = new Set(x.map(a => [(a[0]+N)%N, (a[1]+N)%N]));
+        // i     || (n.delete(x[0]), n.delete(x[1]), n.delete(x[2]));
+        // i<N-1 || (n.delete(x[3]), n.delete(x[4]), n.delete(x[5]));
+        // j     || (n.delete(x[0]), n.delete(x[3]), n.delete(x[6]));
+        // j<N-1 || (n.delete(x[2]), n.delete(x[5]), n.delete(x[7]));
          
         neighbors[i].push(n);
     }
@@ -42,9 +43,20 @@ function generateGame(){
             draw.rect(size/N, size/N)
                 .attr({ class: game[i][j]?'on':'off' })
                 .move(j*size/N, i*size/N)
-                .on('click', function(){
+                .on('mousedown', function(){
                     if (!playing) {
                         game[i][j] = +!game[i][j];
+                        mousedown = true;
+                        drag = game[i][j];
+                        squares[i][j].attr({ class: game[i][j]? 'on':'off' });
+                    }
+                })
+                .on('mouseup', function(){
+                    mousedown = false;
+                })
+                .on('mouseover', function(){
+                    if (mousedown && !playing) {
+                        game[i][j] = drag;
                         squares[i][j].attr({ class: game[i][j]? 'on':'off' });
                     }
                 })
@@ -66,7 +78,6 @@ function tick(){
         game[i][j] && alive++;
     }
     alive || stopPlay();
-    console.log(alive);
 }
 
 function stopPlay(){
@@ -91,18 +102,19 @@ document.getElementById('start').addEventListener('click',function(){
     redraw = setInterval(tick, interval);
     playing = true;
 });
-
-document.getElementById('stop').addEventListener('click', stopPlay);
-document.getElementById('tick').addEventListener('click', tick);
-document.getElementById('reset').addEventListener('click',newGame);
-document.getElementById('size10').addEventListener('click', changeSize);
-document.getElementById('size25').addEventListener('click', changeSize);
-document.getElementById('size50').addEventListener('click', changeSize);
-document.getElementById('size100').addEventListener('click', changeSize);
-
 document.getElementById('clear').addEventListener('click',function(){
     stopPlay();
     for (row of game) row.fill(0);
     tick();
 });
+
+document.getElementById('stop').addEventListener('click', stopPlay);
+document.getElementById('tick').addEventListener('click', tick);
+document.getElementById('reset').addEventListener('click', newGame);
+document.getElementById('size10').addEventListener('click', changeSize);
+document.getElementById('size25').addEventListener('click', changeSize);
+document.getElementById('size50').addEventListener('click', changeSize);
+document.getElementById('size100').addEventListener('click', changeSize);
+
+
 
