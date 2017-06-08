@@ -29,13 +29,7 @@ function generateGame(){
             [i  , j-1],
             [i  , j+1]
         ];
-        let n = new Set(x.map(a => [(a[0]+N)%N, (a[1]+N)%N]));
-        // i     || (n.delete(x[0]), n.delete(x[1]), n.delete(x[2]));
-        // i<N-1 || (n.delete(x[3]), n.delete(x[4]), n.delete(x[5]));
-        // j     || (n.delete(x[0]), n.delete(x[3]), n.delete(x[6]));
-        // j<N-1 || (n.delete(x[2]), n.delete(x[5]), n.delete(x[7]));
-         
-        neighbors[i].push(n);
+        neighbors[i].push(x.map(a => [(a[0]+N)%N, (a[1]+N)%N]));
     }
     for (let i=0;i<N;i++) for (let j=0;j<N;j++){
         j || (squares[i].length = 0);
