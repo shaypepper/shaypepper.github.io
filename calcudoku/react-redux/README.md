@@ -11,7 +11,10 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 ## Interesting features
 * Randomly generates new puzzle every time it is reset.
 * Groupings mostly do not touch other groupings with the same background color. The algorithm is imperfect, but mostly effective.
+* Candidate mode allows you to mark which digits are possibilities in that particular square.
+* Switch between candidate mode and guessing mode by pressing the space bar.
 
 ## Things to be considered/fixed
 * Randomly generated puzzles that have multiple solutions. Is it possible to quickly check for these cases or draw the grouping in a way to eliminate this possibility?
 * Can we make the colored grouping algorithm right 100% of the time?
+* Is there a way to make this mobile friendly? 
