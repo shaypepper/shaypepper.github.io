@@ -1,0 +1,117 @@
+@media (max-width: 700px) {
+  body {
+    --game-size: 480px;
+  }
+}
+
+@media (max-width: 840px ) and ( min-width: 701px) {
+  body {
+    --game-size: 630px;
+  }
+}
+
+@media (min-width: 841px) {
+  body {
+    --game-size: 800px;
+  }
+}
+
+@keyframes glitz {
+    0%   {background-color: var(--color1);}
+    25%  {background-color: var(--color2);}
+    50%  {background-color: var(--color3);}
+    75%  {background-color: var(--color4);}
+    100% {background-color: var(--color1);}
+}
+
+body {
+  --N: 8;
+  /*--game-size: 630px;*/
+  --square-size: calc(var(--game-size) / var(--N));
+  --hint-size: calc(var(--game-size) / (5.5*var(--N)));
+  --candidate-size: calc(var(--game-size) / (7.4*var(--N)));
+  --guess-size: calc(var(--game-size) / (1.5*var(--N)));
+  --partition-size: calc(var(--game-size) / (30*var(--N)));
+  --color1: #E24E42;
+  --color2: #E9B000;
+  --color3: #EB6E80;
+  --color4: #008F95;
+}
+#wrapper {
+  margin: auto;
+  width: var(--game-size);
+  color: white;
+}
+table {
+  height: 100%;
+  width: 100% ;
+}
+h1 {
+  color: black;
+}
+#puzzle p { margin: 0; position: absolute; }
+#puzzle .row {
+  height: var(--square-size);
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+}
+[role="tooltip"] {
+  color: black;
+}
+.square {
+  height: var(--square-size);
+  width: var(--square-size);
+  display: inline-block;
+  box-sizing: border-box;
+}
+.hint {
+  text-align: left;
+  vertical-align: top;
+  padding-left: calc(2 * var(--partition-size));
+  padding-top: var(--partition-size);
+  font-weight: bold;
+  font-size: var(--hint-size);
+}
+.square.highlight.answered { background-color: black; }
+.square.highlight .answer { color: var(--color3); }
+.answered .candidates,
+.candidates {
+  color: transparent;
+  width: 25%;
+  font-size: var(--candidate-size);
+}
+.selected.candidates { color: white; }
+.square table tr { height: 25%; }
+.square div, .square table { height: 100%; }
+.square.right-border { border-right: var(--partition-size) solid white; }
+.square.bottom-border { border-bottom: var(--partition-size) solid white; }
+.square.active { opacity: .7;}
+.answer {
+  font-size: var(--guess-size);
+  font-weight: bold;
+  width: var(--square-size);
+}
+.btn-group, .btns {
+  height: 4em;
+  display: inline-block;
+  vertical-align: top;
+}
+.bg1 { background-color: var(--color1) }
+.bg2, .btn { background-color: var(--color2) }
+.bg3 { background-color: var(--color3) }
+.bg4, .btn.selected { background-color: var(--color4) }
+.btn {  border-radius: 0; }
+
+.win .bg1 {
+  animation: glitz 1170ms linear 0s infinite;
+}
+.win .bg2 {
+  animation: glitz 2080ms linear 0s infinite;
+}
+.win .bg3 {
+  animation: glitz 2500ms linear 0s infinite;
+}
+.win .bg4 {
+  animation: glitz 3130ms linear 0s infinite;
+}
