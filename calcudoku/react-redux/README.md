@@ -19,4 +19,4 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 * Can we make the colored grouping algorithm right 100% of the time?
 * Is there a way to make this mobile friendly?
 
-[![video of calcudoku](http://shaypepper.github.io/calcudoku/react-redux/calcudoku.mov)]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HrXi-tM9NnA" frameborder="0" allowfullscreen></iframe>
