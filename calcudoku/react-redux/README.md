@@ -17,4 +17,6 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 ## Things to be considered/fixed
 * Randomly generated puzzles that have multiple solutions. Is it possible to quickly check for these cases or draw the grouping in a way to eliminate this possibility?
 * Can we make the colored grouping algorithm right 100% of the time?
-* Is there a way to make this mobile friendly? 
+* Is there a way to make this mobile friendly?
+
+[![video of calcudoku](http://shaypepper.github.io/calcudoku/react-redux/calcudoku.mov)]
