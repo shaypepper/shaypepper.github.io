@@ -6,6 +6,8 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 1. Each digit can only appear once in each column/row
 2. The digits in any given group will give you the amount in the hint for that group when the operation in that hint is applied. Example: 45x as a hint for a two box group would mean 9 and 5 were in the two boxes. Order doesn't matter.
 
+You can also see more robust rules [here](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/calcudoku/rules).
+
 [Play here](http://shaypepper.github.io/calcudoku/react-redux)
 
 ## Interesting features
@@ -18,3 +20,6 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 * Randomly generated puzzles that have multiple solutions. Is it possible to quickly check for these cases or draw the grouping in a way to eliminate this possibility?
 * Can we make the colored grouping algorithm right 100% of the time?
 * Is there a way to make this mobile friendly?
+
+## Design
+* The design of the interface is based on the [New York Times sudoku puzzles](https://www.nytimes.com/crosswords/game/sudoku/hard). 
