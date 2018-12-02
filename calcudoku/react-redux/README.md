@@ -1,5 +1,7 @@
 # Calcudoku
 
+### [Play here](http://shaypepper.github.io/calcudoku/react-redux)
+
 This is my first React web app. I decided to take a simple game i made in jQuery and format it for react/redux. Yes, I am well aware this is overkill.
 
 ## Rules
@@ -7,8 +9,6 @@ This is my first React web app. I decided to take a simple game i made in jQuery
 2. The digits in any given group will give you the amount in the hint for that group when the operation in that hint is applied. Example: 45x as a hint for a two box group would mean 9 and 5 were in the two boxes. Order doesn't matter.
 
 You can also see more robust rules [here](https://www.conceptispuzzles.com/index.aspx?uri=puzzle/calcudoku/rules).
-
-[Play here](http://shaypepper.github.io/calcudoku/react-redux)
 
 ## Interesting features
 * Randomly generates new puzzle every time it is reset.
