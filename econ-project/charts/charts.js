@@ -35,7 +35,7 @@ function newChart(name, chartType, methods) {
         self.wrapper.setQuery( self.getQuery() );
         self.wrapper.setDataSourceUrl( self.getUrl() );
         self.wrapper.draw();
-    }
+    };
 
     elById(name).innerHTML = (
         '<h4 class="chart-title" id="' + name + 'Title"></h4>' +
@@ -74,7 +74,6 @@ function newChart(name, chartType, methods) {
 
     queryOptions[name].forEach(selectSet => {
         self.makeSelect(selectSet.code);
-        console.log(name, selectSet.code)
         selectSet.optGroups.forEach(optGroup =>{
             self.makeOptGroup(optGroup.name, selectSet.code, optGroup.options);
         });
@@ -118,7 +117,9 @@ function drawCharts() {
     // Domestic Violence Scatter Chart
     var dvScatter = new newChart( 'dvScatter', 'ScatterChart', {
         getTitle: () => {
-            return 'Percentage of ' ;
+            return "Comparison of perception and" + 
+              ( idT("dvScatterQ2").includes("justified") ? " attitudes" : " reported abuse") + 
+              " by state";
         },
         getQuery: () => {
             return 'select D, ' + valFromDiv("dvScatterQ2") + 

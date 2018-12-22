@@ -1,233 +1,0 @@
-use "/Users/name/dtas/DVcompare.dta", clear
-file close _all
-
-local rgb1_1 "254 14 83"
-local rgb1_2 "254 66 43"
-local rgb1_3 "254 88 69"
-local rgb1_4 "254 111 94"
-local rgb1_5 "254 134 119"
-local rgb1_6 "254 156 145"
-local rgb1_7 "254 179 170"
-
-
-local rgb2_1 "98 62 89"
-local rgb2_2 "114 72 103"
-local rgb2_3 "129 82 117"
-local rgb2_4 "145 92 131"
-local rgb2_5 "159 104 144"
-local rgb2_6 "169 119 156"
-local rgb2_7 "179 135 167"
-
-
-local rgb3_1 "0  52 0"
-local rgb3_2 "0  77 0"
-local rgb3_3 "0  103 0"
-local rgb3_4 "0  128 0"
-local rgb3_5 "0  154 0"
-local rgb3_6 "0  179 0"
-local rgb3_7 "0  205 0"
-
-
-local rgb4_1 "64 98 120"
-local rgb4_2 "73 111 137"
-local rgb4_3 "82 125 153"
-local rgb4_4 "93 138 168"
-local rgb4_5 "110 150 177"
-local rgb4_6 "126 162 186"
-local rgb4_7 "143 174 195"
-
-
-local rgb5_1 "60 42 30"
-local rgb5_2 "77 54 38"
-local rgb5_3 "94 66 47"
-local rgb5_4 "111 78 55"
-local rgb5_5 "128 90 63"
-local rgb5_6 "145 102 72"
-local rgb5_7 "162 114 80"
-
-local rgbbone "255 250 240"
-local rgbaqua "188 212 230" //paleaqua
-
-local hexbone "#FFFAF0"
-local hexaqua "#BCD4E6"
-
-local hex1_1 "#FE0E53"
-local hex1_2 "#FE422B"
-local hex1_3 "#FE5845"
-local hex1_4 "#FE6F5E"
-local hex1_5 "#FE8677"
-local hex1_6 "#FE9C91"
-local hex1_7 "#FEB3AA"
-
-
-local hex2_1 "#623E59"
-local hex2_2 "#724867"
-local hex2_3 "#815275"
-local hex2_4 "#915C83"
-local hex2_5 "#9F6890"
-local hex2_6 "#A9779C"
-local hex2_7 "#B387A7"
-
-
-local hex3_1 "#003400"
-local hex3_2 "#004D00"
-local hex3_3 "#006700"
-local hex3_4 "#008000"
-local hex3_5 "#009A00"
-local hex3_6 "#00B300"
-local hex3_7 "#00CD00"
-
-
-local hex4_1 "#406278"
-local hex4_2 "#496F89"
-local hex4_3 "#527D99"
-local hex4_4 "#5D8AA8"
-local hex4_5 "#6E96B1"
-local hex4_6 "#7EA2BA"
-local hex4_7 "#8FAEC3"
-
-
-local hex5_1 "#3C2A1E"
-local hex5_2 "#4D3626"
-local hex5_3 "#5E422F"
-local hex5_4 "#6F4E37"
-local hex5_5 "#805A3F"
-local hex5_6 "#916648"
-local hex5_7 "#A27250"
-
-
-do "/Users/name/Dropbox/ShayProject/dofiles/DVColors.do"
-do "/Users/name/Dropbox/ShayProject/dofiles/isocodelabel.do"
-local igroup "EVER MARRIED WOMEN"
-local ngroup "EVER MARRIED WOMEN"
-local nmgroup "EVER MARRIED MEN"
-local urt1 "URBAN"
-local urt2 "RURAL"
-local urt3 "ALL"
-local beat1 "wives leave without permission" 
-local beat2 "families give too little dowry"
-local beat3 "wives neglect housework"
-local beat4 "wives cook improperly or poorly"
-local beat5 "husbands suspect affair"
-local qi "commom"
-local qn "justified"
-local qnm "justified"
-
-foreach  X in 1 2 3 4 5 {
-	foreach Y in nm n i {
-		forv Z = 1/3 {
-
-			file open thehandly using /Users/name/Dropbox/ShayProject/HTML/Maps/`urt`Z''/`Y'DV`X'.html, write replace
-			
-			file write thehandly `"<html>"' ///
-					_n `"<head>"' ///
-					_n _tab `"<style>"' ///										_n _tab(2) `".chartWithOverlay {"' ///									_n _tab(3) `"position: relative;"' ///									_n _tab(3) `"overflow: hidden;"' ///		
-									_n _tab(3) `"width: 625px;"' ///
-									_n _tab(3) `"right: 125px;"' ///														_n _tab(2) `"}"' ///
-							_n _tab(2) `"body {"' ///									_n _tab(3) `"background-color: `hexbone';"' ///												_n _tab(2) `"}"' ///							_n _tab(2) `".overlay {"' ///									_n _tab(3) `"width: 200px;"' ///									_n _tab(3) `"height: 100px;"' ///									_n _tab(3) `"position: absolute;"' ///									_n _tab(3) `"top: 0px; "' ///									_n _tab(3) `"right: 10px; "' ///							_n _tab(2) `"}"' ///					_n _tab   `"</style>"'
-						file write thehandly _n(2) _tab `"<script type="text/javascript" src="https://"' ///
-			`"www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':"' ///
-			`"'1.1','packages':['geochart']}]}"></script>"' ///
-					_n `"<script type="text/javascript">"'
-								label value code isocode			file write thehandly _n    _tab `"google.setOnLoadCallback(drawRegionsMap);"' _n			file write thehandly _n(2) _tab `"function drawRegionsMap() {"' _n			file write thehandly _n(2) _tab(2) `"var data = google.visualization.arrayToDataTable(["'
-			file write thehandly _n `"['Region', 'Proportion'],"'
-				forv V = 1/37 {
-						quietly: su `Y'DV`X' if code == `V' & urt == `Z'
-						scalar define aaa = r(N)
-						if aaa == 1 {
-							file write thehandly _n `"["'
-							local ISO : label isocode `V'
-							file write thehandly `" ' `ISO' ' "'
-							file write thehandly `", "'
-							quietly: su `Y'DV`X' if code == `V' & urt == `Z'
-							local themean: display r(mean)
-							file write thehandly `" `themean' "'
-							file write thehandly `"],     ///"'
-							local CODE: label state `V'
-							file write thehandly `" '`CODE'' "' _n
-				  	}
-				  	else if aaa > 1 {
-				  	display `" There is a problem with state number `V' "'
-				  	}
-				  	else {
-				  	}
-				  }						file write thehandly _n `"]);"'			file write thehandly _n(2) `"var options = {"'			file write thehandly _n `"title: "Variable: `Y'DV`X', `urt`Z'' ","'			file write thehandly _n `"displayMode: 'regions',"'			file write thehandly _n `"resolution: 'provinces',"'			file write thehandly _n `"region: 'IN', /// India"'									file write thehandly _n `"colorAxis: {"'			file write thehandly _n `"minValue: 0,"'			file write thehandly _n `"maxValue: 1,"'			file write thehandly _n `"colors: ['`hexbone'', '`hex`X'_4'']"'			file write thehandly _n `"},"'			file write thehandly _n `"legend: 'none',"'			file write thehandly _n `"backgroundColor: '`hexaqua'',"'			file write thehandly _n `"datalessRegionColor: '`hexbone''"'			file write thehandly _n `"};"'
-			
-			
-			file write thehandly _n(2) `"var chart = document.getElementById('regions_div');"'			file write thehandly _n `"var chartb = new google.visualization.GeoChart(chart);"'			/* file write thehandly _n `"google.visualization.events.addListener(chartb, 'ready' , function() {"'			file write thehandly _n `"chart.innerHTML = '<img src="' _char(34) `"' + chartb.getImageURI() + '">';"'			file write thehandly _n `"console.log(chart.innerHTML);"'			file write thehandly _n `"});"' */
-			file write thehandly _n `"chartb.draw(data, options);"'			file write thehandly _n `"}"'			file write thehandly _n `"</script>"'			file write thehandly _n `"</head>"'
-			
-			file write thehandly _n `"<body>"'			file write thehandly _n `"<div class="chartWithOverlay">"'
-			file write thehandly _n `"<div id="regions_div" style="width: 815px; height: 500px; right: 100px"></div>"'
-			file write thehandly _n(2) `"<div class="overlay">"'			file write thehandly _n `"<div class= "overlay" align = "right" >"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana'; font-size: 15px;" ><i>Is beating `q`Y'' when `beat`X''?</i></div>"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana'; margin-top:5px; font-size: 10px;">``Y'group'</div>"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana'; margin-top:5px; font-size: 10px;">IN `urt`Z'' AREAS</div>"'			file write thehandly _n `"</div>"'			
-			file write thehandly _n `"</div>"'
-			file write thehandly _n `"</body>"'			file write thehandly _n `"</html>"'
-			
-			file close thehandly
-		}
-	}
-}
-
-
-************************************************************************************
-* MAPS FOR ACTUAL ABUSE 
-************************************************************************************
-
-foreach  X in 1 3 4 {
-	foreach Y in n {
-		forv Z = 1/3 {
-
-			file open thehandly using /Users/name/Dropbox/ShayProject/HTML/Maps/`urt`Z''/DVns`X'.html, write replace
-
-			file write thehandly `"<html>"' ///
-					_n `"<head>"' ///
-					_n _tab `"<style>"' ///										_n _tab(2) `".chartWithOverlay {"' ///									_n _tab(3) `"position: relative;"' ///									_n _tab(3) `"overflow: hidden;"' ///		
-									_n _tab(3) `"width: 625px;"' ///
-									_n _tab(3) `"right: 125px;"' ///														_n _tab(2) `"}"' ///
-							_n _tab(2) `"body {"' ///									_n _tab(3) `"background-color: `hexbone';"' ///												_n _tab(2) `"}"' ///							_n _tab(2) `".overlay {"' ///									_n _tab(3) `"width: 250px;"' ///									_n _tab(3) `"height: 100px;"' ///									_n _tab(3) `"position: absolute;"' ///									_n _tab(3) `"top: 0px; "' ///									_n _tab(3) `"right: 10px; "' ///							_n _tab(2) `"}"' ///					_n _tab   `"</style>"'
-			file write thehandly _n(2) _tab `"<script type="text/javascript" src="https://"' ///
-			`"www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':"' ///
-			`"'1.1','packages':['geochart']}]}"></script>"' ///
-					_n `"<script type="text/javascript">"'
-								label value code isocode			file write thehandly _n    _tab `"google.setOnLoadCallback(drawRegionsMap);"' _n			file write thehandly _n(2) _tab `"function drawRegionsMap() {"' _n			file write thehandly _n(2) _tab(2) `"var data = google.visualization.arrayToDataTable(["'
-			file write thehandly _n `"['Region', 'Proportion'],"'
-				forv V = 1/37 {
-						quietly: su `Y'DVns if code == `V' & urt == `Z'
-						scalar define aaa = r(N)
-						if aaa == 1 {
-							file write thehandly _n `"["'
-							local ISO : label isocode `V'
-							file write thehandly `" ' `ISO' ' "'
-							file write thehandly `", "'
-							quietly: su `Y'DVns if code == `V' & urt == `Z'
-							local themean: display r(mean)
-							file write thehandly `" `themean' "'
-							file write thehandly `"],     ///"'
-							local CODE: label state `V'
-							file write thehandly `" '`CODE'' "' _n
-				  	}
-				  	else if aaa > 1 {
-				  	display `" There is a problem with state number `V' "'
-				  	}
-				  	else {
-				  	}
-				  }						file write thehandly _n `"]);"'			file write thehandly _n(2) `"var options = {"'			file write thehandly _n `"title: "Variable: `Y'DVns, `urt`Z'' ","'			file write thehandly _n `"displayMode: 'regions',"'			/* file write thehandly _n `"enableRegionInteractivity: 'false',"' */			file write thehandly _n `"resolution: 'provinces',"'			file write thehandly _n `"region: 'IN', /// India"'						file write thehandly _n `"colorAxis: {"'			file write thehandly _n `"minValue: 0,"'			file write thehandly _n `"maxValue: 1,"'			file write thehandly _n `"colors: ['`hexbone'', '`hex`X'_4'']"'			file write thehandly _n `"},"'			file write thehandly _n `"legend: 'none',"'			file write thehandly _n `"backgroundColor: '`hexaqua'',"'			file write thehandly _n `"datalessRegionColor: '`hexbone''"'			file write thehandly _n `"};"'
-			
-			file write thehandly _n(2) `"var chart = document.getElementById('regions_div');"'			file write thehandly _n `"var chartb = new google.visualization.GeoChart(chart);"'			/* file write thehandly _n `"google.visualization.events.addListener(chartb, 'ready' , function() {"'			file write thehandly _n `"chart.innerHTML = '<img src="' _char(34) `"' + chartb.getImageURI() + '">';"'			file write thehandly _n `"console.log(chart.innerHTML);"'			file write thehandly _n `"});"' */
-			file write thehandly _n `"chartb.draw(data, options);"'			file write thehandly _n `"}"'
-						file write thehandly _n `"</script>"'			file write thehandly _n `"</head>"'
-			file write thehandly _n `"<body>"'			file write thehandly _n `"<div class="chartWithOverlay">"'
-			file write thehandly _n `"<div id="regions_div" style="width: 815px; height: 500px; right: 100px"></div>"'
-			
-			file write thehandly _n(2) `"<div class="overlay">"'			file write thehandly _n `"<div class= "overlay" align = "right" >"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana';"' ///
-														`" font-size: 15px;" ><i>Women who have been abused in previous 12 months</i></div>"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana'; margin-top:5px; font-size: 7px;">non-sex only</div>"'			file write thehandly _n `"<div style= "color: #6F4E37; font-family:'Verdana'; margin-top:5px; font-size: 10px;">IN `urt`Z'' AREAS</div>"'			file write thehandly _n `"</div>"'
-			
-			file write thehandly _n `"</div>"'
-			file write thehandly _n `"</body>"'			file write thehandly _n `"</html>"'
-			
-			file close thehandly
-		}
-	}
-}
-
-zipfile "/Users/name/Dropbox/ShayProject/HTML/Maps", saving(mapshtml)

@@ -196,11 +196,11 @@ opts.wkLines = [
                     ['Any Work', "_0", false],
                     ['Farm Work', "_1", false, ],
                     ['Animal Work', "_2", false],
-                    ['Agricultural Wage Work', "_3", true],
+                    ['Agricultural Wage Work', "_3", false],
                     ['Other Wage Work', "_4", false],
                     ['Salary Work', "_5", false],
                     ['Household Business Work', "_6", false],
-                    ['Any Outside Work', "_8", false],
+                    ['Any Outside Work', "_8", true],
                     ['Any Wage Work', "_7", false]
                 ]
             },
@@ -213,10 +213,10 @@ opts.wkLines = [
             {
                 name: "X-Axis",
                 options: [
-                    ['Affluence score*',"aff", true],
+                    ['Affluence score*',"aff", false],
                     ['Vlg domestic violence score*',"vdv", false],
                     ['Education levels',"edu",false],
-                    ['Age Group',"age",false]
+                    ['Age Group',"age", true]
                 ]
             }
         ]

@@ -36,7 +36,7 @@ function newChart(name, chartType, methods) {
         self.wrapper.setQuery( self.getQuery() );
         self.wrapper.setDataSourceUrl( self.getUrl() );
         self.wrapper.draw();
-    }
+    };
 
     elById(name).innerHTML = (
         '<h4 class="chart-title" id="' + name + 'Title"></h4>' +
@@ -75,7 +75,6 @@ function newChart(name, chartType, methods) {
 
     queryOptions[name].forEach(selectSet => {
         self.makeSelect(selectSet.code);
-        console.log(name, selectSet.code)
         selectSet.optGroups.forEach(optGroup =>{
             self.makeOptGroup(optGroup.name, selectSet.code, optGroup.options);
         });
@@ -119,7 +118,9 @@ function drawCharts() {
     // Domestic Violence Scatter Chart
     var dvScatter = new newChart( 'dvScatter', 'ScatterChart', {
         getTitle: () => {
-            return 'Percentage of ' ;
+            return "Comparison of perception and" + 
+              ( idT("dvScatterQ2").includes("justified") ? " attitudes" : " reported abuse") + 
+              " by state";
         },
         getQuery: () => {
             return 'select D, ' + valFromDiv("dvScatterQ2") + 
@@ -388,11 +389,11 @@ opts.wkLines = [
                     ['Any Work', "_0", false],
                     ['Farm Work', "_1", false, ],
                     ['Animal Work', "_2", false],
-                    ['Agricultural Wage Work', "_3", true],
+                    ['Agricultural Wage Work', "_3", false],
                     ['Other Wage Work', "_4", false],
                     ['Salary Work', "_5", false],
                     ['Household Business Work', "_6", false],
-                    ['Any Outside Work', "_8", false],
+                    ['Any Outside Work', "_8", true],
                     ['Any Wage Work', "_7", false]
                 ]
             },
@@ -405,10 +406,10 @@ opts.wkLines = [
             {
                 name: "X-Axis",
                 options: [
-                    ['Affluence score*',"aff", true],
+                    ['Affluence score*',"aff", false],
                     ['Vlg domestic violence score*',"vdv", false],
                     ['Education levels',"edu",false],
-                    ['Age Group',"age",false]
+                    ['Age Group',"age", true]
                 ]
             }
         ]
@@ -677,7 +678,7 @@ opts.wkMap = opts.dvMap = {
 
 opts.dvScatter = {
       titlePosition: 'in',
-      chartArea: {width: '90%', height: '90%'},
+      chartArea: {width: '90%'},
       colors: [clr[1],clr[2],clr[3],clr[4],clr[5], clr[6]],
       hAxis: {
         textStyle: {
@@ -685,9 +686,9 @@ opts.dvScatter = {
           bold: 'true', 
           font: 'Lato'
         },
-        title:'Percent of women who say justified', 
+        title:'NFHS - justified or reported', 
         titleTextStyle:{color: clr[5]}, 
-        textPosition: 'in',
+//        textPosition: 'in',
         // viewWindow: {max: 1, min: 0},
         format: 'percent'
       },
@@ -697,17 +698,16 @@ opts.dvScatter = {
           color: clr[5], 
           bold: 'true'
         },
-        title: 'Percentage of women who say common ', 
+        title: 'IHDS perception', 
         titleTextStyle: {color: clr[5]}, 
         // viewWindow: {max: 1, min: 0},
         textPosition: 'in'},
         legend: 'none',
         backgroundColor: 'transparent', 
-        datalessRegionColor: clr[7],
         animation: { easing: 'in',  duration: 600},
         trendlines: { 0: {} }, 
         datalessRegionColor: clr[7]
-      }
+};
 
 
 opts.wkLines = {
@@ -785,6 +785,7 @@ opts.wkMap = 'https://docs.google.com/spreadsheets/d/' +
        '1a455iKYHLA-mgKE4xCm3Oo9Brebv6i8bFdTrMhlL9GI' +
        '/gviz/tq?headers=1&sheet=';
 
+// My Drive > Shay's Project > Shay Culpepper's Thesis Files > wkBar
 opts.wkBar = 'https://docs.google.com/spreadsheets/d/' + 
        '1tyFrqSROrTxDkf9rWIEaE2yezm0YzBHPjYqeYBRCQYA' +
        '/gviz/tq?headers=1&sheet=';

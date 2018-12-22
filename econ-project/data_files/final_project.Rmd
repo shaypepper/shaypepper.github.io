@@ -1,12 +1,13 @@
 ---
 title: "Domestic Violence and Laborforce Participation in India"
+author: "Shay Culpepper and Lyzzy Chung"
 output:
   html_document:
     df_print: paged
-    # includes:
-    #   in_header: "~/Documents/2018-fall-ccny/econometrics/final_project/header.html"
   pdf_document: default
 bibliography: final_project.bib
+nocite: | 
+  @Desai2005, @NFHS3
 header-includes: 
   - \usepackage{dcolumn}
 ---
@@ -51,10 +52,9 @@ sg <- function(...){
 ## Intro
 It is hard to remain objective when discussing intimate partner violence (IPV). It is a complicated, heart-breaking, and often deeply personal subject especially to those who have direct experience with it. Intimate partner violence raises questions of public health, human rights, sociology, psychology, and for this paper, economic well being of both the person experiencing the violence and the communities where IPV is common. We will explore in this paper the effects of married woman experiencing violence or having high perceptions of violence in their communities on the female labor force participation rate.  Society as a whole must grapple with how to prevent and stop IPV and how to properly support not only victims but also the communities that are indirectly affected due to changes in work force participation. In order to do this properly, we must understand the implications of these actions and understand what benefits/downsides come from a reduction in violence. This knowledge can drive campaigns and policy to ensure true and lasting change, regardless of previous misconceptions or cultural misnomers. 
 
-To better understand the effects of IPV on workforce participation, we chose data from India for two main reasons; it has the highest IPV rates in the work and it has a decreasing women’s labor force participation rate despite India’s rapidly growing economy. Despite the Domestic Violence Act that was enacted in 2005 in India, banning all types of violence against women and girls, child marriages, brutal killings, and domestic violence are still commonplace in India. In 2011 TrustLaw, a service of the Thomas Reuters Foundation, found India  to be the worst of all G20 nations for women, citing their high rates of early marriage and long-held views of IPV justification culturally to name a few (http://news.trust.org/item/20120613010100-b7scy/?source=spotlight). There is a certain level of social acceptability of violence in a marriage, accepted by 51% of men and 54% of women in a recent government survey. This even includes honor killings related to dowry disputes between families. The biggest cultural misnomer most politicians are trying to overcome is having females viewed as assets and not burdens, because the current laws are seen as adequate, but unless cultural change occurs the enforcement of those laws are excepted to stay low or non-existent. 
+To better understand the effects of IPV on workforce participation, we chose data from India for two main reasons; it has the highest IPV rates in the work and it has a decreasing women’s labor force participation rate despite India’s rapidly growing economy. Despite the Domestic Violence Act that was enacted in 2005 in India, banning all types of violence against women and girls, child marriages, brutal killings, and domestic violence are still commonplace in India. In 2011 TrustLaw, a service of the Thomas Reuters Foundation, [found India  to be the worst](http://news.trust.org/item/20120613010100-b7scy/?source=spotlight) of all G20 nations for women, citing their high rates of early marriage and long-held views of IPV justification culturally to name a few . There is a certain level of social acceptability of violence in a marriage, accepted by 51% of men and 54% of women in a recent government survey. This even includes honor killings related to dowry disputes between families. The biggest cultural misnomer most politicians are trying to overcome is having females viewed as assets and not burdens, because the current laws are seen as adequate, but unless cultural change occurs the enforcement of those laws are excepted to stay low or non-existent. 
 
-Even though India is considered one of the fastest growing economies in the world, over the last decade, women’s labor force participation rate has dropped from 43% to 31% where men are reporting a 98% participation rate. (
-https://www.livemint.com/Politics/jedAN6zwNy0V0eXmc2vMGM/What-prevents-women-from-working-in-India.html) If the women’s rate of participation was at par with the men, a McKinsey Global study in 2015 found that India could increase its GDP by 16-60% by 2025. Some of the factors for this difference in participation rate were the highly entrenched gender norms of the culture, rising income for men (which ties into a cultural attitude that if men make enough women should not work), and the shortage of quality jobs for women currently available. Looking at multiple indexes of female empowerment, the worst states are reported to be UP, Bihar, Haryana, and Rajasthan, which are all northern rural states.
+Even though India is considered one of the fastest growing economies in the world, over the last decade, women’s labor force participation rate has dropped from 43% to 31% where men are [reporting a 98% participation rate](https://www.livemint.com/Politics/jedAN6zwNy0V0eXmc2vMGM/What-prevents-women-from-working-in-India.html). If the women’s rate of participation was at par with the men, a McKinsey Global study in 2015 found that India could increase its GDP by 16-60% by 2025. Some of the factors for this difference in participation rate were the highly entrenched gender norms of the culture, rising income for men (which ties into a cultural attitude that if men make enough women should not work), and the shortage of quality jobs for women currently available. Looking at multiple indexes of female empowerment, the worst states are reported to be UP, Bihar, Haryana, and Rajasthan, which are all northern rural states.
 
 ## Background and some (conflicting) theories of Domestic Violence
 ### Backlash Theory
@@ -102,10 +102,27 @@ The higher the total wealth level of the household, the higher the likelihood th
 ## Descriptive Statistics
 
 ### Interactive graphs
-These are a number of graphs that explore the domestic violence and work data. The labor data is all pulled from the IHDS 2005-2006 data. The domestic violence variables are a mix of the IHDS 2005-2006 data and the NFHS 2005-2006 data. 
+These are a number of graphs that explore the domestic violence and work data. The labor data is all pulled from the IHDS 2005-2006 data. The domestic violence variables are a mix of the IHDS and NFHS data.
 
+#### Basic statistics
+Here you can get an idea of domestic violence perceptions and labor force participation according to some of our categorical regressors.
 
+<div class="row">
+  <div id="wkBar" class="interactiveMap">
+
+  </div>
+
+  <div id="dvBar" class="interactiveMap">
+
+  </div>
+</div>
+
+<div id="wkBar"></div>
 <div id="dvBar"></div>
+
+#### Side by side maps
+
+From these interactive maps, you can see some interesting correlations with the northern, western, and easter regions/states with more justified views in violence (from both men and women) with specifically high numbers in the state of Bihar, differences by region of what sector women typcially work in (if at all), as well as details about agricultural work participation of females. 
 
 <div class="row">
   <div id="dvMap" class="interactiveMap">
@@ -118,13 +135,14 @@ These are a number of graphs that explore the domestic violence and work data. T
   <style> .interactiveMap { width: 48%; float: left; } </style>
 </div>
 
-From these interactive maps, you can see some interesting correlations with the northern, western, and easter regions/states with more justified views in violence (from both men and women) with specifically high numbers in the state of Bihar, differences by region of what sector women typcially work in (if at all), as well as details about agricultural work participation of females. 
+#### Charts of laborforce participation
+
+This is perhaps the most interesting of the interactive charts. The difference in working between the women who did report a perception of domestic violence versus those who didn't is clearer. The bar chart is really just to show some basic statistics on domestic violence without having so many other variables to compare against. 
 
 <div id="wkLines"></div>
+ 
 
-This is perhaps the most interesting of the interactive graphs. When you are looking at either the wage work or outside work variables, the differences based on  
 
-<div id="wkBar"></div>
 
 ### Validity of domestic violence perception as a proxy
 
@@ -132,8 +150,6 @@ We did not do a particularly in depth analysis of this (there are only 24 hours 
 
 
 <div id="dvScatter"></div>
-
-
 
 
 ```{r echo = FALSE}
@@ -236,8 +252,9 @@ For our principle component analysis, we created a gender roles score and a dome
 
 For the gender roles score, we used a number of variables. Whether the woman practices Purdah, how old she was when she began living with her husband, whether she had any say in who she married,  what role she plays in making decisions for the household, whether she is expected to do all of the child care. Domestic violence variables were not included for this PCA variable. For the domestic violence scores we simply used the averages for the various domestic violence questions. 
 
+This analysis was done in Stata and brought into R. 
+
 ### Logit
-logit on whether a woman is working, whether or not she started working, and whether or not she's increased hours working. 
 
 ```{r  results = "asis", warning = FALSE, echo = FALSE, message = FALSE}
 library(stargazer)
@@ -324,13 +341,13 @@ stargazer(m1, m2, m3, m4, m5, m6,
           header = FALSE)
 ```
 
-NOTE: This uses distruct level gender relations PCA. States are omited but are regressors
+Of all the variables we tested for logit, the only ones of significance that would lead more towards a woman being more likely to work outside the home related to violence (in order of more effect) were leaving without permission (0.281), suspecting an affair (0.264), any other event except affair (0.178), and bad cooking (0.159) and surprisingly only from the 2011 survey.  District level PCA from 2005 was also statistically significant (but not 2011 which is odd) and at the smallest with 0.067. Age of the woman was expected (0.263) as the older women are, the less likely they are to have young children at home that they need to care for. Average wages for women (0.058) and being a college grad (0.398) were not at all surprising given that better work can be found with a degree but that wages are a result of work.  The most surprising variable was how high the variable was for having daughters at home (0.259). The caste variables were also not surprising as Scheduled Tribes (ST, those that are historically nomadic, no organized religion), Scheduled Castes (SC, the “untouchables”, dirtiest work, considered the lowest in the caste ranking), and Other Backward Class (OBC, peasants and poor but between upper-castes and SC’s) were all statistically significant with OBC having the lowest coefficient and ST having the highest between the castes. These results were not surprising given the cultural knowledge we have about these areas in India discussed earlier in the paper. 
 
-
+The other variables of significance that would increase the likelihood to not work outside the home are husband’s earnings (-0.005), age squared (-0.003), Other religious group than Christian and Muslim (-0.312), and being from an urban area (-1.286). I was rather surprised at first by the urban statistic as that is normally where more jobs are located compared to rural, however due to rural environments being very agriculturally focused and the need for more workers in the fields, it makes more sense that 
 
 
 ### Tree/Forest
-Find which variables are most likely to predict whether or not they experience domestic violence in order of "importance"
+
 ```{r warning = FALSE, message = FALSE, echo = FALSE}
 library('rpart')
 library('rpart.plot')
@@ -376,37 +393,19 @@ vi <- model1$variable.importance
 
 NOTE: This uses district level domestic violence PCA. 
 
-### kNN
-
-```{r eval = FALSE, warning = FALSE}
-good.obs <- complete.cases(dat_use)
-y.data  <- subset(dat_use, good.obs)
-
-set.seed(17)
-NN_obs <- sum(good.obs)
-train.obs <- (runif(NN_obs) < 0.8)
-
-train.data <- subset(y.data, train.obs)
-test.data  <- subset(y.data, !train.obs)
-cl.data    <- y.data$bottom25[train.obs]
-true.data  <- y.data$bottom25[!train.obs]
-
-predicted.ent <- knn(train = train.data[-1], 
-                     test = test.data[-1], 
-                     cl = cl.data,
-                     k = 3)
-n.correctly.predicted <- sum(predicted.ent == true.data)
-correct.rate <- n.correctly.predicted / length(predicted.ent)
-print(correct.rate)
-```
+Based on this tree and the list of variables in level of importance, the amount the spouse makes is the highest predictor to a woman to experience violence are related to spousal earnings and caste while domestic violence PCA for districts was 6th on the list. We were honestly shocked by how far down it was, but that PCA was still above religion as we expected religious beliefs to be much higher. 
 
 ## Summary of Findings
-
-## What this means
-
+In conclusion, we were not able to prove our hypothesis that experiencing violence was a good predictor of whether or not a woman would enter the workforce, but that there was some correlation of statistical significance with certain types of reported abuse and working outside the home. This is not surprising however due to the heavy influence of cultural expectations of gender norms within Indian society including the pressures of women not to work and take care of traditional household responsibilities as well as religious and geographical effects. This continues to follow previous research on the topic about the importance cultural norms play heavily in India, regardless of current laws on the books that may try to curb some of these restrictions put on women. The most important aspect that I believe plays into this degraded sense of what abuse can do to change a woman’s participation in the workforce is that domestic violence is still highly considered normal and acceptable culturally, so whether or not there is actual abuse or a perception of abuse, that may not change a woman’s mind about whether to work because of a possible feeling of no matter what she does, she’s likely to experience abuse and if she does, then it’s likely justified. 
 
 
+<!--
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="./bundle.js"></script>
+-->
 
 ## Citations
 
+Desai, Sonalde, and Reeve Vanneman and National Council of Applied Economic Research, New Delhi. India Human Development Survey-II (IHDS-II), 2011-12. ICPSR36151-v2. Ann Arbor, MI: Inter-university Consortium for Political and Social Research [distributor], 2015-07-31.
 

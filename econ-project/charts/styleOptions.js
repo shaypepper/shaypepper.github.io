@@ -62,7 +62,7 @@ opts.wkMap = opts.dvMap = {
 
 opts.dvScatter = {
       titlePosition: 'in',
-      chartArea: {width: '90%', height: '90%'},
+      chartArea: {width: '90%'},
       colors: [clr[1],clr[2],clr[3],clr[4],clr[5], clr[6]],
       hAxis: {
         textStyle: {
@@ -70,9 +70,9 @@ opts.dvScatter = {
           bold: 'true', 
           font: 'Lato'
         },
-        title:'Percent of women who say justified', 
+        title:'NFHS - justified or reported', 
         titleTextStyle:{color: clr[5]}, 
-        textPosition: 'in',
+//        textPosition: 'in',
         // viewWindow: {max: 1, min: 0},
         format: 'percent'
       },
@@ -82,17 +82,16 @@ opts.dvScatter = {
           color: clr[5], 
           bold: 'true'
         },
-        title: 'Percentage of women who say common ', 
+        title: 'IHDS perception', 
         titleTextStyle: {color: clr[5]}, 
         // viewWindow: {max: 1, min: 0},
         textPosition: 'in'},
         legend: 'none',
         backgroundColor: 'transparent', 
-        datalessRegionColor: clr[7],
         animation: { easing: 'in',  duration: 600},
         trendlines: { 0: {} }, 
         datalessRegionColor: clr[7]
-      }
+};
 
 
 opts.wkLines = {
