@@ -1,0 +1,412 @@
+---
+title: "Domestic Violence and Laborforce Participation in India"
+output:
+  html_document:
+    df_print: paged
+    # includes:
+    #   in_header: "~/Documents/2018-fall-ccny/econometrics/final_project/header.html"
+  pdf_document: default
+bibliography: final_project.bib
+header-includes: 
+  - \usepackage{dcolumn}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# detach(ihds.data)
+library("haven")
+library("dplyr")
+
+religion.labels <- c("Hindu", "Muslim", "Christian", "Other")
+dv.labels <-c("Leaving without premission", 
+              "Too little dowry", 
+              "Bad Cooking", 
+              "Neglecting house",
+              "Suspected Affair")
+
+caste.labels <- c("Brahmin", "OBC", "SC", "ST", "Other")
+
+ihds.data <- read_stata('/Users/shaypepper/Documents/school/econometrics/data/IHDS-II/dtas/bothpanels.dta') %>%
+  mutate(
+    hh_religion = factor(hh_religion, labels = religion.labels),
+    hh_caste    = factor(hh_caste, labels = caste.labels),
+    urban       = factor(urban, labels = c("Rural", "Urban")),
+    SP_work_earnings_2 = SP_work_earnings_2 / 1000
+  )
+
+
+sg <- function(...){
+  stargazer(..., align = TRUE, 
+            header = FALSE,
+            column.sep.width = "0pt", 
+            multicolumn = TRUE, 
+            no.space = TRUE, 
+            omit = c("STATE"), 
+            digits = 3)
+}
+
+              
+```
+
+## Intro
+It is hard to remain objective when discussing intimate partner violence (IPV). It is a complicated, heart-breaking, and often deeply personal subject especially to those who have direct experience with it. Intimate partner violence raises questions of public health, human rights, sociology, psychology, and for this paper, economic well being of both the person experiencing the violence and the communities where IPV is common. We will explore in this paper the effects of married woman experiencing violence or having high perceptions of violence in their communities on the female labor force participation rate.  Society as a whole must grapple with how to prevent and stop IPV and how to properly support not only victims but also the communities that are indirectly affected due to changes in work force participation. In order to do this properly, we must understand the implications of these actions and understand what benefits/downsides come from a reduction in violence. This knowledge can drive campaigns and policy to ensure true and lasting change, regardless of previous misconceptions or cultural misnomers. 
+
+To better understand the effects of IPV on workforce participation, we chose data from India for two main reasons; it has the highest IPV rates in the work and it has a decreasing women’s labor force participation rate despite India’s rapidly growing economy. Despite the Domestic Violence Act that was enacted in 2005 in India, banning all types of violence against women and girls, child marriages, brutal killings, and domestic violence are still commonplace in India. In 2011 TrustLaw, a service of the Thomas Reuters Foundation, found India  to be the worst of all G20 nations for women, citing their high rates of early marriage and long-held views of IPV justification culturally to name a few (http://news.trust.org/item/20120613010100-b7scy/?source=spotlight). There is a certain level of social acceptability of violence in a marriage, accepted by 51% of men and 54% of women in a recent government survey. This even includes honor killings related to dowry disputes between families. The biggest cultural misnomer most politicians are trying to overcome is having females viewed as assets and not burdens, because the current laws are seen as adequate, but unless cultural change occurs the enforcement of those laws are excepted to stay low or non-existent. 
+
+Even though India is considered one of the fastest growing economies in the world, over the last decade, women’s labor force participation rate has dropped from 43% to 31% where men are reporting a 98% participation rate. (
+https://www.livemint.com/Politics/jedAN6zwNy0V0eXmc2vMGM/What-prevents-women-from-working-in-India.html) If the women’s rate of participation was at par with the men, a McKinsey Global study in 2015 found that India could increase its GDP by 16-60% by 2025. Some of the factors for this difference in participation rate were the highly entrenched gender norms of the culture, rising income for men (which ties into a cultural attitude that if men make enough women should not work), and the shortage of quality jobs for women currently available. Looking at multiple indexes of female empowerment, the worst states are reported to be UP, Bihar, Haryana, and Rajasthan, which are all northern rural states.
+
+## Background and some (conflicting) theories of Domestic Violence
+### Backlash Theory
+Backlash effects occur when a woman becomes more financially independent in some way and the partner becomes less secure in his own standing within the relationship and therefore becomes violent towards his partner. Even the act of job searching can trigger this type of domestic abuse and has been frequently seen in the United States from women already in abusive relationships or at risk of being in one [@Moe2004]. The feeling from the partner is a loss of control and power over a woman, and the desire to lower her self-esteem enough to regain that control and make her more reliant on him for social and financial stability. This violence also has led to approximately 31% of workplace women (and 14% of men) to be killed at work due to interpersonal assaults according to the Bureau of Labor Statistics Census of Fatal Occupational Injuries in 2001. With increased risk of the partner coming to the woman’s place or work and being disruptive, this also has shown a greater risk of abused women being able to maintain jobs and being let go by their employers due to the work place interruptions, missing work/being late due to abuse related injuries, and other related issues.
+
+### Extraction Theory
+This theory was focused around the reasons for abuse occurring in a household, and one of the top reasons being “inadequate” dowries at the time of the wedding. The groom and his family felt justified beating or abusing the bride as “punishment” and to extract more money from her family [@Rao1997]. This is seen more frequently in parts of India where there are more women than men of marrying age, so dowries become “inflated” to try to “compete” for the eligible men, which in turn can put the bride’s family into debt for years if not the rest of their life. In multiple documented cases, if the bride came from a wealthier family than the groom, her dowry may be smaller than expected or what they know the family can afford, so the groom would continually demand more money or “gifts” from the bride’s family or else threaten more violence against their daughter.
+
+### Bargaining Theory
+Bargaining theory posits that women experiencing domestic violence will gain more empowerment as a result of increased education, wealth, or job opportunities. Many programs focusing on women's empowerment hold this theory to be true, hoping that increased access to resources will decrease a woman's likeliness to be abused. [@Bates2004]. This can be achieved through her ability to resist the abuse or situations that lead to the abuse as well as to gain the confidence to leave the abusive relationship. In 2001-2002, a team of researchers conducted in depth interviews and has small group discussion with around 1200 women in rural Bangladesh. A little over a third had experienced some domestic violence in the pervious 12 months, while two thirds had experienced it ever. Unsurprisingly, many of the women believed that they would be less vulnerable to violence if they had higher status of some kind. Essentially they believed informally in bargaining theory. The study further showed that when women started working over the course of the time this study took place, they were more likely that their peers to begin experiencing domestic violence. Specifically in India however where divorce is incredibly rare, the ability for the woman to leave the relationship is pretty much impossible and the tendacy to fall into the backlash theory of abuse is more prominent.
+
+### Exposure Theory
+Another more recent theory in this area is exposure theory. This is the theory that as a woman works, she is around her husband less, and therefore well be less exposed to abusive situations generally, and therefore will be abused less. One study looked deeply into these competing theories and concluded that the effects of being around her husband less may actually overcome the expected backlash effect normally seen in rural parts of India [@Chin2012]. This study was specific to rural areas only and the effects of agricultural job changes due to weather/drought exposure. 
+
+### Our Hypothesis
+Obviously these theories are contradictory. With extraction theory and backlash theory making empowerment less favorable in terms of actual abuse and bargaining and exposure effects being more favorable in bringing empowerment back to the woman to be able to leave or avoid the abusive situation. One of the shortcomings of these theories is that they all look at how obtaining a job (or not having a job) predicts future abuse, however none account for the opposite effect. Could abuse make a woman more likely to seek work? Likewise, most studies look to a single moment in time. We will use the IHDS data, which is panel data, to determine if women who have a strong perception of violence in their communities are more likely to start working within the subsequent years. We will also do a related regression comparing reported violence from the NFHS survey on a district level with the reported perception of violence in IHDS to determine if perception is an appropriate instrument for measuring actual domestic violence. This of course could change the meaning of our findings. If women are more likely to go to work because of perceived domestic violence in their community, this is a distinctly different finding than women going to work because of experiences domestic violence. Of course, because of past research, we almost certainly will have an endogeneity, but we will try to account for several explanitory variables from our research. 
+
+## Data Sources
+#### India Human Development Survey
+The India Human Development Survey (IHDS) is a survey taken from 2004-05 and again in 2011-12 of 41,000-42,000 households across all of India. It is jointly organized by researchers from the University of Maryland and the National Council of Applied Economic Research (NCAER), New Delhi. Funding for the second round of this survey is provided by the National Institutes of Health with additional funding provided by The Ford Foundation. The data makes it possible to match household and individual records from one dataset to another. The dataset includes information on things like health, labor, education, and agricultural by household. It additionally has a separate section that was just for women who had ever been married ages 15-49. The researchers asked questions such as the woman's age when she was married, information on her natal family, whether or not she moved into her husband's family home, and her perception of domestic violence in the community. This last question is the key explanatory variable that we are interested in. Specifically, the survey asked whether or not it was common for women in their community to be beaten by their husbands after particular triggers. The five triggers given were infidelity, bad cooking, not taking care of the children, leaving the house without permission, and her family giving insufficient dowry at the time of marriage. Because this is panel data, we will be able to look at whether perception of community violence in 2005-2006 made a particular woman more likely to have joined the labor force in 2011-2012.
+
+#### National Family Health Survey
+The National Family Health Survey (NFHS) is conducted by the International Institute for Population Sciences (IIPS) Mumbai, which is designated by the Ministry of Health and Family Welfare (MOHFW) from the government of India. This survey has been conducted four times since 1992-93. Unlike the IHDS, the individual records in this survey cannot be matched from one survey to another, as the survey is a randomized sample of households each round. The survey looks for data specifically related to health and family welfare needed to make policy changes as well as emerging issues. The sections in this survey that capture domestic violence measures include attitudes toward women of both men and women. It also includes a lengthy questionnaire on what domestic violence (including sexual violence) a woman has experienced in the previous twelve months as well as from previous partners. The data also includes frequency, severity, and triggers. Because this isn't panel data on an individual level like IHDS, we will compare labor-force participation of subgroups of women based on IPV variables at a single moment in time. We can look at how this effect at a macro level has changed over time.   
+
+## Explanatory Variables
+
+### Caste 
+The caste system, also known as the Varna system, comes out of Hinduism, which is a prominent religion in India. It has historically been used to assign a social hierarchy based on color and especially to designate what kind of labor individuals were allowed to do.  While the caste system and discrimination based on caste has been outlawed in India, caste is still sadly ingrained in the culture. People from lower castes are often discriminated against and understandably this has a number of impacts on a family's socioeconomic status. 
+
+### Religion
+Like caste, religion is deeply ingrained in Indian culture. Communities are built around religion. Unsurprisingly, the status of women within different religions varies so it is an important. This also includes enforcement of Purdah head coverings, being escorted in public by specific family members only, or other traditional conservative restrictions put on women. The higher the importance of these religious traditions, the more likely the woman will experience backlash due to not following the rules/traditions and the more likely it will be seen in the community as acceptable to punish the woman physically. 
+
+### Education
+Education has a counterintuitive role in women's labor-force participation. When women are illiterate for example, they are very unlikely to be working. When a woman has advanced degrees, she is also very unlikely to be working due to her likelihood of marrying a man of higher education as well, who in turn will have a higher income so there is less need and more cultural pressure to not work. It makes a tricky U-curve like structure of a woman’s likelihood to work based on education level. [@Chatterjee2018] 
+
+### Urban vs Rural
+The difference between urban and rural we believe is significant for multiple factors to include the availability of work; in rural areas agricultural jobs are more prevalent but pay very little (so more likely seen as acceptable for a woman to work) but can be hard to come by during times of drought or off seasons (which in several studies led to an increase in domestic violence due to no work for the wife or husband but increases in drinking and depression in the men). Rural communities tend to physically have family compounds further apart, making it harder for the wife to have contact with her family if abuse does start after she moves in with her husband and his family. Urban environments tend to provide more options for employment, closer family households, and more opportunities for assistance in raising children from other family members. As we began looking at descriptive statistics and based on the available data, the specific regions and districts showed unique results as well, so seperation into regions will also prove to be important.
+
+### Children, Children under 5
+One very clear restriction to women working was the importance placed on a woman to raise children and take care of a household. We believe that before a child is able to enter school for the first time around age 5, the mother would be under intense scrutiny to be working unless absolutely necessary or without family help, so ensuring we account for the couple having children and specifically those under 5 years old would be important.
+
+### Wealth level
+The higher the total wealth level of the household, the higher the likelihood the female will not work (similar to the education obtainment stated above) and the lower the wealth level, the more acceptable it is for a woman to bring in a small salary to keep the children and family fed but with higher expectations that she still maintain the typical household duties of cleaning, cooking, and caring for the children.
+
+## Descriptive Statistics
+
+### Interactive graphs
+These are a number of graphs that explore the domestic violence and work data. The labor data is all pulled from the IHDS 2005-2006 data. The domestic violence variables are a mix of the IHDS 2005-2006 data and the NFHS 2005-2006 data. 
+
+
+<div id="dvBar"></div>
+
+<div class="row">
+  <div id="dvMap" class="interactiveMap">
+
+  </div>
+
+  <div id="wkMap" class="interactiveMap">
+
+  </div>
+  <style> .interactiveMap { width: 48%; float: left; } </style>
+</div>
+
+From these interactive maps, you can see some interesting correlations with the northern, western, and easter regions/states with more justified views in violence (from both men and women) with specifically high numbers in the state of Bihar, differences by region of what sector women typcially work in (if at all), as well as details about agricultural work participation of females. 
+
+<div id="wkLines"></div>
+
+This is perhaps the most interesting of the interactive graphs. When you are looking at either the wage work or outside work variables, the differences based on  
+
+<div id="wkBar"></div>
+
+### Validity of domestic violence perception as a proxy
+
+We did not do a particularly in depth analysis of this (there are only 24 hours in a day, after all). Most of our analysis is through charts. This first interactive graph shows a comparison of reported domestic violence and perception of domestic violence aggregated by state. This was one of the more valid ways to compare these statistics as these surveys were taken in the same year. District level data was not available for NFHS because of privacy laws surrounding AIDS testing. The data points seem to have little to know correlation. This brings into questionn whether perception of domestic violence actually tells you anything about levels of domestic violence. 
+
+
+<div id="dvScatter"></div>
+
+
+
+
+```{r echo = FALSE}
+attach(ihds.data)
+
+iDV1 <- round(cor(iDV1leaving, iDV1leaving_2, use = "pairwise.complete.obs"), 3)
+iDV2 <- round(cor(iDV2dowry, iDV2dowry_2,     use = "pairwise.complete.obs"), 3)
+iDV3 <- round(cor(iDV3neglect, iDV3neglect_2, use = "pairwise.complete.obs"), 3)
+iDV4 <- round(cor(iDV4cooking, iDV4cooking_2, use = "pairwise.complete.obs"), 3)
+iDV5 <- round(cor(iDV5affair, iDV5affair_2,   use = "pairwise.complete.obs"), 3)
+iDV  <- round(cor(iDVcomp, iDVcomp_2,         use = "pairwise.complete.obs"), 3)
+
+detach(ihds.data)
+```
+Next we looked at a comparison between women's responses to in 2005 to 2011. There is only a small correlation between the two. In order to graph the comparisons, we used aggregate data at a village level. You can see how scattered the comparisons are. This lack of correlation is difficult to interpret. Were women giving arbitrary answers? Have things changed in many places over 5-6 years? At the very least, perception of DV wasn't deeply ingrained in these women, at least for the particular triggers. The five graphs here represent the five domestic violence questions that were common between the two surveys. 
+
+| Trigger                        | Correlation |
+|--------------------------------|-------------|
+| Leaving without permission     |``r iDV1``
+| Too little dowry               |``r iDV2``
+| Neglecting house or children   |``r iDV3``
+| Bad cooking                    |``r iDV4``
+| Suspected affair               |``r iDV5``
+| Any of first four              |``r iDV``
+| | |
+
+```{r warning = FALSE, echo = FALSE}
+library(ggplot2)
+
+# Bar graph w/ (geom_bar) w/ facet_wrap for % of women who percieve violence by religion, affluence, caste, and education
+
+compare_dv_stats <- ihds.data %>%
+  group_by(IDPSU) %>%
+  summarize(dv1leaving_05    = weighted.mean(iDV1leaving,     na.rm = TRUE, w = SWEIGHT),
+            dv2dowry_05      = weighted.mean(iDV2dowry,       na.rm = TRUE, w = SWEIGHT),
+            dv3neglect_05    = weighted.mean(iDV3neglect,     na.rm = TRUE, w = SWEIGHT),
+            dv4cooking_05    = weighted.mean(iDV4cooking,     na.rm = TRUE, w = SWEIGHT),
+            dv5affair_05     = weighted.mean(iDV5affair,      na.rm = TRUE, w = SWEIGHT),
+            dvcomp_05        = weighted.mean(iDVcomp,         na.rm = TRUE, w = SWEIGHT),
+            dv1leaving_11    = weighted.mean(iDV1leaving_2,   na.rm = TRUE, w = WTEW_2),
+            dv2dowry_11      = weighted.mean(iDV2dowry_2,     na.rm = TRUE, w = WTEW_2),
+            dv3neglect_11    = weighted.mean(iDV3neglect_2,   na.rm = TRUE, w = WTEW_2),
+            dv4cooking_11    = weighted.mean(iDV4cooking_2,   na.rm = TRUE, w = WTEW_2),
+            dv5affair_11     = weighted.mean(iDV5affair_2,    na.rm = TRUE, w = WTEW_2),
+            dvcomp_11        = weighted.mean(iDVcomp_2,       na.rm = TRUE, w = WTEW_2),
+            work_outside_05  = weighted.mean(work_outside,    na.rm = TRUE, w = SWEIGHT),
+            work_outside_11  = weighted.mean(work_outside_2,  na.rm = TRUE, w = WTEW_2),
+            work_earnings11  = weighted.mean(work_earnings_2, na.rm = TRUE, w = WTEW_2)/ 1000)
+
+get_plot <- function(v){
+  v05 <- compare_dv_stats[[ paste(v, "_05", sep = "") ]]
+  v11 <- compare_dv_stats[[ paste(v, "_11", sep = "") ]]
+  p <-  ggplot(data = compare_dv_stats, 
+          aes(x = v05, y = v11) ) +
+          geom_point() + 
+          geom_smooth(method='lm',formula=y~x) +
+          xlab("Village average in 2005") + 
+          ylab("Village average in 2011") 
+  print(p)
+}
+```
+
+#### Correlations between answers 2005 and 2011 {.tabset .tabset-fade}
+
+##### Leaving w/out permission
+
+```{r warning = FALSE, echo = FALSE} 
+get_plot("dv1leaving")
+```
+
+##### Too little dowry
+
+```{r warning = FALSE, echo = FALSE} 
+get_plot("dv2dowry")
+```
+
+##### Neglecting house/kids
+
+```{r warning = FALSE, echo = FALSE} 
+get_plot("dv3neglect")
+```
+
+##### Bad Cooking
+
+```{r warning = FALSE, echo = FALSE} 
+get_plot("dv4cooking")
+```
+
+##### Suspected Affair
+
+```{r warning = FALSE, echo = FALSE} 
+get_plot("dv5affair")
+```
+
+## Methodology 
+
+
+### PCA
+For our principle component analysis, we created a gender roles score and a domestic violence perception score at a district level. To do this we took a number of variables that related to women being treated differently than men and then used the district level averages to construct the PCA variables. This gave us the ability to use something continuous to construct the variables instead of a bunch of 0/1 variables. We also calculated these scores on a village, state, and regional level, but district seemed the most appropriate since the sample sizes were larger than a village, but also because we are using the states as separate regressors. At least one PCA variable is used in each of our models. 
+
+For the gender roles score, we used a number of variables. Whether the woman practices Purdah, how old she was when she began living with her husband, whether she had any say in who she married,  what role she plays in making decisions for the household, whether she is expected to do all of the child care. Domestic violence variables were not included for this PCA variable. For the domestic violence scores we simply used the averages for the various domestic violence questions. 
+
+### Logit
+logit on whether a woman is working, whether or not she started working, and whether or not she's increased hours working. 
+
+```{r  results = "asis", warning = FALSE, echo = FALSE, message = FALSE}
+library(stargazer)
+library(survey)
+
+clean.data <- ihds.data %>%
+  mutate(age) %>%
+  left_join(compare_dv_stats) %>%
+  filter(!is.na(WTEW_2)) %>%
+  as.data.frame()
+
+clean.data <- svydesign(~1, data = clean.data, weights = clean.data$WTEW_2)
+
+dv.variable.logit <- function(v){
+  v2 <- paste(v, "_2", sep = "")
+  dep <- paste("work_outside_2", "~", v)
+  formula <-  paste(dep, v2
+    , "dstGRpca1" 
+    , "dstGRpca1_2" 
+    , "work_earnings11"          # average earnings for women by district
+    , "SP_work_earnings_2" 
+    , "edu_collegegrad" 
+    , "age_2" 
+    , "age_sq_2" 
+    , "(dtrsathome_2 > 0)"
+    , "gaunaage" 
+    , "purdah_2"
+    , "factor(hh_religion)" 
+    , "factor(hh_caste)"
+    , "urban"
+    , "factor(STATEID)"
+    , sep= " + " 
+  )
+  model <- svyglm(formula, design=clean.data, family = binomial(link = "logit"))
+  return(model)
+}
+
+m1 <- dv.variable.logit("iDV1leaving")
+m2 <- dv.variable.logit("iDV2dowry")
+m3 <- dv.variable.logit("iDV3neglect")
+m4 <- dv.variable.logit("iDV4cooking")
+m5 <- dv.variable.logit("iDV5affair")
+m6 <- dv.variable.logit("iDVcomp")
+
+
+regress.labels <- c("Trigger: Leaving w/o permission ('05)", 
+                    "Trigger: Leaving w/o permission ('11)",
+                    "Trigger: Not enough dowry ('05)",
+                    "Trigger: Not enough dowry ('11)",
+                    "Trigger: Neglecting house/children ('05)",
+                    "Trigger: Neglecting house/children ('11)",
+                    "Trigger: Bad cooking ('05)",
+                    "Trigger: Bad cooking ('11)",
+                    "Trigger: Suspected affair ('05)",
+                    "Trigger: Suspected affair ('11)",
+                    "Trigger: Any but affair ('05)",
+                    "Trigger: Any but affair ('11)",
+                    "District level GR PCA '05", 
+                    "District level GR PCA '11", 
+                    "Average wages for women",
+                    "Husband's earnings", 
+                    "College Grad", 
+                    "Age", 
+                    "Age squared", 
+                    "Has daughters at home", 
+                    "Age at gauna", 
+                    "Practices Purdah",
+                    "Religion: Muslim",
+                    "Religion: Christian",
+                    "Religion: Other",
+                    "Caste: OBC",
+                    "Caste: SC",
+                    "Caste: ST",
+                    "Caste: Other",
+                    "Urban area") # Rownames
+
+stargazer(m1, m2, m3, m4, m5, m6, 
+          align = TRUE, 
+          column.sep.width = "40pt",
+          omit = c("STATE"), 
+          digits = 3, 
+          type = "html", 
+          covariate.labels = regress.labels,
+          header = FALSE)
+```
+
+NOTE: This uses distruct level gender relations PCA. States are omited but are regressors
+
+
+
+
+### Tree/Forest
+Find which variables are most likely to predict whether or not they experience domestic violence in order of "importance"
+```{r warning = FALSE, message = FALSE, echo = FALSE}
+library('rpart')
+library('rpart.plot')
+# tree model of whether has health insurance
+model1 <- rpart(work_outside_2 ~ 
+                  iDV1leaving + 
+                  iDV1leaving_2 + 
+                  iDV2dowry + 
+                  iDV2dowry_2 + 
+                  iDV3neglect + 
+                  iDV3neglect_2 +
+                  iDV4cooking + 
+                  iDV4cooking_2 +
+                  SP_work_earnings_2 + 
+                  dstDVpca1 +  
+                  edu_collegegrad + 
+                  age_2 + age_sq_2 + 
+                  (dtrsathome_2 > 0) + 
+                  gaunaage + 
+                  purdah_2 + 
+                  hh_religion + 
+                  hh_caste + 
+                  urban, data=ihds.data, method = "class")
+# summary(model1)
+rpart.plot(model1, type = 1, fallen.leaves = TRUE)
+# summary(model1, cp = 0)
+vi <- model1$variable.importance
+
+```
+
+| Variable                   | Importance      |
+|----------------------------|-----------------:|
+| Spouse's earnings          | `r round(vi["SP_work_earnings_2"], 2)` |
+| Caste                      | `r round(vi["hh_caste"], 2)` |
+| Urban area | `r round(vi["urban"], 2)` |
+| Practices purdah    | `r round(vi["purdah_2"], 2)` |
+| Age at Gauna | `r round(vi["gaunaage"], 2)` |
+| Domestic Violence PCA for district | `r round(vi["dstDVpca1"], 2)` |
+| College graduate | `r round(vi["edu_collegegrad"], 2)` |
+| Religion | `r round(vi["hh_religion"], 2)` |
+| Age | `r round(vi["age_2"], 2)` |
+| Age squared | `r round(vi["age_sq_2"], 2)` |
+
+NOTE: This uses district level domestic violence PCA. 
+
+### kNN
+
+```{r eval = FALSE, warning = FALSE}
+good.obs <- complete.cases(dat_use)
+y.data  <- subset(dat_use, good.obs)
+
+set.seed(17)
+NN_obs <- sum(good.obs)
+train.obs <- (runif(NN_obs) < 0.8)
+
+train.data <- subset(y.data, train.obs)
+test.data  <- subset(y.data, !train.obs)
+cl.data    <- y.data$bottom25[train.obs]
+true.data  <- y.data$bottom25[!train.obs]
+
+predicted.ent <- knn(train = train.data[-1], 
+                     test = test.data[-1], 
+                     cl = cl.data,
+                     k = 3)
+n.correctly.predicted <- sum(predicted.ent == true.data)
+correct.rate <- n.correctly.predicted / length(predicted.ent)
+print(correct.rate)
+```
+
+## Summary of Findings
+
+## What this means
+
+
+
+
+## Citations
+
+

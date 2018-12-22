@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This is a WordPress eXtended RSS file written by Stata -->
+<!-- It contains information about your desired posts, pages, comments, categories, and other content. -->
+
+
+<rss version="2.0"
+	xmlns:excerpt="http://wordpress.org/export/1.2/excerpt/"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:wp="http://wordpress.org/export/1.2/"
+>
+
+<channel>
+	<title>Perception of Domestic Violence in India</title>
+	<link>http://www.shayculpepper.com</link>
+	<description>and how it affects women going to work</description>
+	<pubDate>Wed, 03 Jun 2015 07:23:18 +0000</pubDate>
+	<language>en-US</language>
+	<wp:wxr_version>1.2</wp:wxr_version>
+	<wp:base_site_url>http://www.shayculpepper.com</wp:base_site_url>
+	<wp:base_blog_url>http://www.shayculpepper.com</wp:base_blog_url>
+
+	<wp:author><wp:author_id>1</wp:author_id><wp:author_login>shaypepper@gmail.com</wp:author_login><wp:author_email>shaypepper@gmail.com</wp:author_email><wp:author_display_name><![CDATA[shaypepper@gmail.com]]></wp:author_display_name><wp:author_first_name><![CDATA[]]></wp:author_first_name><wp:author_last_name><![CDATA[]]></wp:author_last_name></wp:author>
+
+
+	<generator>http://wordpress.org/?v=4.2.2</generator>
+<div id="URBAN1">
+<title>Leave without permission, URBAN </title>
+<details>URBAN, DV1 </details>
+<details>Leave without permission</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/iDV1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/DVns1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nDV1.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nmDV1.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="RURAL1">
+<title>Leave without permission, RURAL </title>
+<details>RURAL, DV1 </details>
+<details>Leave without permission</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/iDV1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/DVns1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nDV1.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nmDV1.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="ALL1">
+<title>Leave without permission, ALL </title>
+<details>ALL, DV1 </details>
+<details>Leave without permission</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/ALL/iDV1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/DVns1.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nDV1.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nmDV1.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="URBAN2">
+<title>Too little dowry, URBAN </title>
+<details>URBAN, DV2 </details>
+<details>Too little dowry</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/iDV2.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/DVns2.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div>
+<div id="RURAL2">
+<title>Too little dowry, RURAL </title>
+<details>RURAL, DV2 </details>
+<details>Too little dowry</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/iDV2.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/DVns2.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div>
+<div id="ALL2">
+<title>Too little dowry, ALL </title>
+<details>ALL, DV2 </details>
+<details>Too little dowry</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/ALL/iDV2.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/DVns2.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div>
+<div id="URBAN3">
+<title>Neglecting housework, URBAN </title>
+<details>URBAN, DV3 </details>
+<details>Neglecting housework</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/iDV3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/DVns3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nDV3.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nmDV3.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="RURAL3">
+<title>Neglecting housework, RURAL </title>
+<details>RURAL, DV3 </details>
+<details>Neglecting housework</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/iDV3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/DVns3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nDV3.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nmDV3.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="ALL3">
+<title>Neglecting housework, ALL </title>
+<details>ALL, DV3 </details>
+<details>Neglecting housework</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/ALL/iDV3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/DVns3.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nDV3.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nmDV3.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="URBAN4">
+<title>Poor cooking, URBAN </title>
+<details>URBAN, DV4 </details>
+<details>Poor cooking</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/iDV4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/DVns4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nDV4.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/nmDV4.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="RURAL4">
+<title>Poor cooking, RURAL </title>
+<details>RURAL, DV4 </details>
+<details>Poor cooking</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/iDV4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/DVns4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nDV4.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/nmDV4.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="ALL4">
+<title>Poor cooking, ALL </title>
+<details>ALL, DV4 </details>
+<details>Poor cooking</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/ALL/iDV4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/DVns4.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nDV4.html"  width="500" height="500" scrolling="no"] 
+[iframe src="http://shayculpepper.com/dvmaps/ALL/nmDV4.html"  width="500" height="500" scrolling="no"] 
+]]></content>
+</div>
+<div id="URBAN5">
+<title>Suspected affair, URBAN </title>
+<details>URBAN, DV5 </details>
+<details>Suspected affair</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/iDV5.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/URBAN/DVns5.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div>
+<div id="RURAL5">
+<title>Suspected affair, RURAL </title>
+<details>RURAL, DV5 </details>
+<details>Suspected affair</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/iDV5.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/RURAL/DVns5.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div>
+<div id="ALL5">
+<title>Suspected affair, ALL </title>
+<details>ALL, DV5 </details>
+<details>Suspected affair</details>
+<content><![CDATA[
+[iframe src="http://shayculpepper.com/dvmaps/ALL/iDV5.html"  width="500" height="500" scrolling="no"]
+[iframe src="http://shayculpepper.com/dvmaps/ALL/DVns5.html"  width="500" height="500" scrolling="no"]
+]]></content>
+</div></channel>
+</rss>
