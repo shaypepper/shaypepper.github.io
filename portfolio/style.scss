@@ -1,0 +1,15 @@
+@media (max-width: 700px) {
+}
+
+@media (min-width: 701px) {
+}
+
+.circleComponent {
+  transform-origin: 50% 50%;
+
+  transition: all 200ms ease;
+
+  &:hover {
+    transform: rotate(180deg);
+  }
+}
