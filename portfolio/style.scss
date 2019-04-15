@@ -6,10 +6,32 @@
 
 .circleComponent {
   transform-origin: 50% 50%;
-
-  transition: all 200ms ease;
+  transform: rotate(45deg);
+  transition: all 500ms ease;
 
   &:hover {
-    transform: rotate(180deg);
+    // transform: rotate(225deg);
+    opacity: 0;
   }
+}
+
+.previewCircle {
+  transform-origin: 50% 50%;
+  transform: rotate(45deg);
+  transition: all 500ms ease;
+}
+
+#shay {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+body {
+  background-color: #1e0535;
+  overflow: hidden;
+}
+
+.bubbleRow {
+  transition: transform 500ms ease;
 }
