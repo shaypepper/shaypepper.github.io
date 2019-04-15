@@ -10,8 +10,7 @@
   transition: all 500ms ease;
 
   &:hover {
-    // transform: rotate(225deg);
-    opacity: 0;
+    transform: rotate(225deg);
   }
 }
 
@@ -34,4 +33,30 @@ body {
 
 .bubbleRow {
   transition: transform 500ms ease;
+}
+
+#topSVG {
+  max-width: 100vh;
+  max-height:  100vw;
+}
+
+a {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.bubbleDiv   {
+  display: flexbox
+
+  a  {
+    width: 49.5%
+  }
+}
+
+.bubbleDivs {
+  transform: rotate(45deg);
+  transform-origin:  0 100%;
+  width: 300px;
+
 }

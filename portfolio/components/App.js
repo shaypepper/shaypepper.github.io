@@ -7,11 +7,12 @@ import Shay from "./Shay";
 const App = () => {
   return (
     <div>
+    
       <svg
         width="100%"
         height="100%"
         preserveAspectRatio="true"
-        viewBox="0 0 500 750"
+        viewBox="0 0 500 500"
         xmlns="http://www.w3.org/2000/svg"
         fill="#dec0f9"
         version="1.1"
@@ -29,6 +30,7 @@ const App = () => {
             name="THESIS"
             fillColor={"#dec0f9"}
             textColor={"#b97af2"}
+            url="https://shaypepper.github.io/econ-project/"
           />
 
           <Circle
@@ -37,6 +39,7 @@ const App = () => {
             name="MATH"
             fillColor={"#dec0f9"}
             textColor={"#b97af2"}
+            url="https://github.com/shaypepper/the-unnamed-math-project"
           />
         </g>
 
@@ -48,6 +51,7 @@ const App = () => {
             name="RESUME"
             fillColor={"#b97af2"}
             textColor={"#2C074D"}
+            url="https://docs.google.com/document/d/e/2PACX-1vT9Tl3R4oN7XtPDu1NcYoz4NrfLWhEJoq8rK77BgtWXY9Jn46fW1f3Hh6qd-8O5B30TmoiRkNWMPIUq/pub"
           />
           <Circle
             x={175}
@@ -62,6 +66,7 @@ const App = () => {
             name="CALCU DOKU"
             fillColor={"#dec0f9"}
             textColor={"#b97af2"}
+            url={"https://github.com/shaypepper/shaypepper.github.io/tree/master/calcudoku/react-redux"}
           />
         </g>
 
@@ -73,6 +78,7 @@ const App = () => {
             name="OILY MANAGER"
             fillColor={"#dec0f9"}
             textColor={"#b97af2"}
+            url="https://www.oilymanager.com/"
           />
           <Circle
             x={100}
@@ -85,9 +91,10 @@ const App = () => {
           <Circle
             x={175}
             y={325}
-            name="MATH"
+            name="BALLOT MATTERS"
             fillColor={"#dec0f9"}
             textColor={"#b97af2"}
+            url="https://www.youtube.com/watch?v=BNo8DWHsiVs"
           />
         </g>
         <Circle

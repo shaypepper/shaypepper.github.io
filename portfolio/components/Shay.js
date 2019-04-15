@@ -35,10 +35,10 @@ const Shay = () => {
             fill="none"
             opacity=".5"
             stroke="#7f00ff"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
-            stroke-width="4"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
+            strokeWidth="4"
           />
           <ellipse
             cx="235.818"
@@ -55,10 +55,10 @@ const Shay = () => {
             rx="7.987"
             ry="5.875"
             stroke="#3b007a"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
-            stroke-width="3"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
+            strokeWidth="3"
             transform="matrix(.69935 -1.20666 1.26349 .4873 -210.032 399.357)"
             fill="black"
           />
@@ -72,9 +72,9 @@ const Shay = () => {
             fill="none"
             opacity=".35"
             stroke="#2d0000"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
           />
           <ellipse
             cx="341.889"
@@ -92,10 +92,10 @@ const Shay = () => {
             rx="7.987"
             ry="5.875"
             stroke="#3f007f"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
-            stroke-width="3"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
+            strokeWidth="3"
             transform="matrix(.94193 -1.15735 1.23473 .77624 -308.175 372.151)"
             fill="black"
           />
@@ -108,9 +108,9 @@ const Shay = () => {
             fill="none"
             opacity=".4"
             stroke="#2d0000"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
           />
           <path
             d="M204.051 199.345c6.733-5.365 15.282-9.512 27.949-2.345 13.167 2.417 13.083 2.083 18.25 5.5 17.833 9.75 6.667-7.5 4.75-7-34.083-17-51.3-10.353-50.949 3.845zM334.4 186.536c-4.233 1.41-11.779 5.446-15.481 7.763-18.202 8.317-6.81 11.665 2.581 7.451 9.25-.75 11.75-5.75 24.25-4.5l-11.35-10.714z"
@@ -135,18 +135,18 @@ const Shay = () => {
           <path
             d="M264.887 352.963c5.165-.13 11.252-.818 15.495-.39 2.094 1.715 10.295 4.53 16.603.46 11.925 2.601 26.172 3.55 39.388-2.112 11.58-8.009 9.143-3.336 4.656 1.653-17.725 29.571-63.493 49.043-76.142.389z"
             fill="#E639CC"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
           />
           <path
             d="M288.71 361.51c11.866-.196 24.908-3.483 36.186-2.54-10.2 3.45-22.556 5.11-36.186 2.54z"
             fill="#7f0000"
             opacity=".5"
             stroke="#7f0000"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
           />
           <path
             d="M265.574 353.376c4.089-1.01 7.07 1.662 14.03 7.709 6.961 6.046 1.243 7.7-2.058 5.938-3.3-1.763-6.209-4.501-9.313-6.752l-2.66-6.895h.001z"
@@ -181,10 +181,10 @@ const Shay = () => {
             d="M266.357 230.094c-15.342-9.322-60.181-23.167-91.04-11.502-4.744 27.477 7.634 57.842 12.656 62.826 16.165 1.845 91.327 7.235 78.037-50.442 10.17-2.992 22.336-3.483 33.5.025 28.02-26.979 82.524-32.932 113.51-13.41-4.953 20.163-4.655 43.326-14.858 60.488-5.023 2.326-85.615 21.341-98.152-46.577"
             fill="none"
             stroke="#000"
-            stroke-dasharray="null"
-            stroke-linecap="null"
-            stroke-linejoin="null"
-            stroke-width="8"
+            strokeDasharray="null"
+            strokeLinecap="null"
+            strokeLinejoin="null"
+            strokeWidth="8"
           />
         </g>
       </g>

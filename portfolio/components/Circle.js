@@ -1,17 +1,19 @@
 import React from "react";
 
-const Circle = ({ name, x, y, size = 100, textColor, fillColor = "grey" }) => {
+const Circle = ({ name, x, y, size = 100, textColor, fillColor = "grey", url}) => {
   const namePieces = name.split(" ");
   const id = namePieces[0];
   const cutoffId = `${id}-cut-off`;
   console.log(namePieces);
 
   return (
+    <a href={url}
+	  target="_blank">
     <svg height={size} width={size} x={x} y={y} viewBox="0 0 100 100">
       <defs>
         <linearGradient id="gradient">
-          <stop offset="0" stop-color="white" stop-opacity="0.25" />
-          <stop offset="1" stop-color="white" stop-opacity="1" />
+          <stop offset="0" stopColor="white" stopOpacity="0.25" />
+          <stop offset="1" stopColor="white" stopOpacity="1" />
         </linearGradient>
 
         <mask id={cutoffId}>
@@ -47,6 +49,7 @@ const Circle = ({ name, x, y, size = 100, textColor, fillColor = "grey" }) => {
             strokeLinejoin="null"
             strokeWidth="0"
             textAnchor="middle"
+            class="circleText"
             x="50"
             y={50 - (namePieces.length - i - 1) * 16}
             width="70"
@@ -57,6 +60,7 @@ const Circle = ({ name, x, y, size = 100, textColor, fillColor = "grey" }) => {
         ))}
       </g>
     </svg>
+    </a>
   );
 };
 
