@@ -3,12 +3,75 @@ import Header from "./Header";
 import BubbleRow from "./BubbleRow";
 import Circle from "./Circle";
 import Shay from "./Shay";
+import Footer from "./Footer";
 
 const App = () => {
   return (
     <div>
-    
-      <svg
+      <BubbleRow
+        linkList={[
+          {
+            name: "THESIS",
+            url: "https://shaypepper.github.io/econ-project/",
+            id: 4
+          }
+        ]}
+      />
+      <BubbleRow
+        linkList={[
+          {
+            name: "PROJECT EULER",
+            url: "https://github.com/shaypepper/the-unnamed-math-project",
+            id: 3
+          }
+        ]}
+      />
+      <BubbleRow
+        linkList={[
+          {
+            name: "RESUME",
+            url:
+              "https://docs.google.com/document/d/e/2PACX-1vT9Tl3R4oN7XtPDu1NcYoz4NrfLWhEJoq8rK77BgtWXY9Jn46fW1f3Hh6qd-8O5B30TmoiRkNWMPIUq/pub",
+            id: 4
+          },
+          { name: "WEDDING", id: 2 }
+        ]}
+      />
+      <BubbleRow
+        linkList={[
+          {
+            name: "CALCU DOKU",
+            url:
+              "https://github.com/shaypepper/shaypepper.github.io/tree/master/calcudoku/react-redux",
+            id: 2
+          },
+
+          {
+            name: "OILY MANAGER",
+            url: "https://www.oilymanager.com/",
+            id: 3
+          },
+          {
+            name: "BALLOT MATTERS",
+            url: "https://www.youtube.com/watch?v=BNo8DWHsiVs",
+            id: 1
+          }
+        ]}
+      />
+      <BubbleRow
+        linkList={[
+          {
+            name: "GITHUB",
+            url: "https://github.com/shaypepper",
+            id: 1
+          }
+        ]}
+      />
+      <BubbleRow />
+      <BubbleRow />
+      <Footer />
+
+      {/* <svg
         width="100%"
         height="100%"
         preserveAspectRatio="true"
@@ -22,26 +85,7 @@ const App = () => {
           <rect width="500" height="500" fill="#6e11c1" />
         </g>
 
-        <g class="bubbleRow">
-          <path d="M150 0 h -150 L 500 500 v -150 z" fill="#530d92" />
-          <Circle
-            x={175}
-            y={25}
-            name="THESIS"
-            fillColor={"#dec0f9"}
-            textColor={"#b97af2"}
-            url="https://shaypepper.github.io/econ-project/"
-          />
-
-          <Circle
-            x={250}
-            y={100}
-            name="MATH"
-            fillColor={"#dec0f9"}
-            textColor={"#b97af2"}
-            url="https://github.com/shaypepper/the-unnamed-math-project"
-          />
-        </g>
+        <g class="bubbleRow"
 
         <g class="bubbleRow">
           <path d="M0 0 V 650 H 650 z" fill="#390964" />
@@ -115,7 +159,7 @@ const App = () => {
           />
         </g>
         <Header />
-      </svg>
+      </svg>*/}
       <Shay />
     </div>
   );

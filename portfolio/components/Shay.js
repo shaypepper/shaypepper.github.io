@@ -8,11 +8,6 @@ const Shay = () => {
       xmlns="http://www.w3.org/2000/svg"
       id="shay"
     >
-      <defs>
-        <filter id="a">
-          <feGaussianBlur in="SourceGraphic" stdDeviation=".1" />
-        </filter>
-      </defs>
       <g class="layer">
         <g class="layer">
           <path
@@ -65,7 +60,6 @@ const Shay = () => {
           <path
             d="M213.315 228.525c11.378-25.342 45.286-6.393 51.384-2.912 6.098 3.482-12.37-23.5-36.066-20.89-23.695 2.612-23.56 19.55-15.318 23.802z"
             fill="#3f007f"
-            filter="url(#a)"
           />
           <path
             d="M213.801 228.095c5.733 8.385 15.966 9.27 26.699 7.155"
