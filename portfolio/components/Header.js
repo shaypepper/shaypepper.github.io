@@ -4,7 +4,7 @@ import Shay from "./Shay";
 
 const Header = () => {
   return (
-    <svg>
+    <svg  class="header">
       <g class="layer">
         <path d="M0 200 v -200 h 200 z" fill="black" />
         <path d="M0 150 v -150 h 150 z" fill="#9250CC" />
