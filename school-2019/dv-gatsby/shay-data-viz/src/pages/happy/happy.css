@@ -1,0 +1,25 @@
+div#happy-list {
+  display: flex;
+  margin-bottom: 0.75em;
+  align-items: center;
+}
+
+div#quantified-self-layout > p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+div#happy-list a {
+  text-decoration: none;
+  background-color: grey;
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 5px;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
